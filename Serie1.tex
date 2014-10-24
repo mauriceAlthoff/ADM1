@@ -1,0 +1,168 @@
+\documentclass[a4paper,10pt,german]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{dsfont}
+\usepackage{amsthm,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
+\newcommand{\dann}{\ensuremath{\Rightarrow}}
+\newcommand{\K}{\ensuremath{\mathbb{K}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\one}{\ensuremath{{\mathds{1}}}}
+
+
+\newcommand{\divec}[2]{\ensuremath{\left(\begin{array}{cc}
+                                    #1\\
+                                    #2
+                                   \end{array}\right)
+                                   }}
+
+\DeclareMathOperator*{\cone}{cone}
+\DeclareMathOperator*{\conv}{conv}
+\DeclareMathOperator*{\aff}{aff}
+
+\newenvironment{ggbsp}{\begin{proof}[Gegenbeispiel]}{ \end{proof}}
+
+\renewcommand{\labelenumi}{\alph{enumi}\,)}
+
+%opening
+\title{Einführung in die lineare und kombinatorische Optimierung\\
+Serie 1}
+\author{Sven-Maurice Althoff (FU 4745454)\\Michael R. Jung (HU 502133)\\Felix Völker ()}
+
+\begin{document}
+
+\maketitle
+
+\section*{Aufgabe 1}
+
+\begin{center}
+  \begin{tabular}{| l | c | c | c | c |}
+    \hline
+                & Montagehalle(4) & Fertigung(4) & Qualit\"atskontrolle(2) & Preis\\ \hline
+    Turamichele &  6 min          &  2 min       &   4 min                 & 50 Euro\\ \hline
+    Jim Knopf   & 10 min          &  4 min       &   4 min                 & 60 Euro \\ \hline
+    Arbeitszeit & 45 min/h        & 50 min/h     &  50min/h                & \\ \hline    
+  \end{tabular}
+\end{center}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+  thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (M) {M};
+  \node[main node] (F) [right of=M] {F};
+  \node[main node] (Q) [right of=F] {Q};
+  \node[main node] (A) [right of=Q] {A};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (M) edge [bend left]  node {6 min} (F)
+        edge [bend right] node {10 min} (F)
+    (F) edge [bend left]  node {2 min} (Q)
+        edge [bend right] node {4 min} (Q)
+    (Q) edge [bend left]  node {4 min} (A)
+        edge [bend right] node {4 min} (A);
+\end{tikzpicture}
+
+Kosten: $max 6f_{MPT} + 2 f_{FQT} + 4f_{QAT} + 10f_{MPJ} + 4 f_{FQJ} + 4f_{QAJ}$\\
+Variablen: \\
+$0 \leq f_{MPT} \leq 4$; $0 \leq f_{MPJ} \leq 4$\\
+$0 \leq f_{FQT} \leq 4$; $0 \leq f_{FQJ} \leq 4$\\
+$0 \leq f_{QAT} \leq 2$; $0 \leq f_{QAJ} \leq 2$\\
+$6f_{MFT} + 10f_{MFJ} \leq 45 min$\\
+$2f_{FQT} + 4f_{FQJ} \leq 50 min$\\
+$4f_{QAT} + 4f_{QAJ} \leq 50 min$
+\section*{Aufgabe 2}
+Formulierung unter Zuhilfenahme der Graphentheorie:\\
+Z.z.: Für alle Graphen $G=(V,E)$ Graph mit $|V|\geq6$ gilt: $\exists V'\subset V:G[V']\cong K_3\vee G[V]\cong \komp{K_3}$.
+\begin{proof}
+ Sei $G=(V,E)$ ein Graph mit $|V|\geq6$.\\
+ Betrachte einen Knoten $v$ und 5 weitere Knoten $x_1,\dots,x_5$. Unter diesen ist er entweder mit mindestens dreien benachbart oder mit mindestens dreien nicht benachbart.
+ \begin{itemize}\itemindent25pt
+  \item[{\bf Fall 1:}]$v$ ist mit drei Knoten benachbart (o.B.d.A. seien dies $x_1,x_2,x_3$):\\
+  Entweder existiert unter diesen mindestens eine Kante (o.B.d.A. $\{x_1,x_2\}$), dann ist $G[\{v,x_1,x_2\}]\cong K_3$ oder unter diesen existiert überhaupt keine Kante, 
+  dann gilt aber $G[\{x_1,x_2,x_3\}]\cong\komp{K_3}.\hfill \checkmark$
+  \item[{\bf Fall 2:}]$v$ ist mit drei Knoten nicht benachbart (o.B.d.A. seien dies $x_1,x_2,x_3$):\\
+  Entweder existiert unter diesen mindestens eine Kante nicht (o.B.d.A. $\{x_1,x_2\}$), dann ist $G[\{v,x_1,x_2\}]\cong \komp{K_3}$ oder unter diesen existieren alle Kanten, 
+  dann gilt aber $G[\{x_1,x_2,x_3\}]\cong K_3.\hfill \checkmark$
+ \end{itemize}
+\end{proof}
+
+\section*{Aufgabe 3}
+Sei $G=(V,E)$ ein Graph. Es genügt zu zeigen: $$G\text{ ist nicht zusammenhängend }\Rightarrow \komp{G}\text{ ist zusammenhängend.}$$
+\begin{proof}
+Sei $G=(V,E)$ ein unzusammenhängender Graph mit den Zusammenhangskomponenten $K_1,\dots,K_p\subseteq V,\ \bigcup\limits_{i=1}^pK_i=V$. Seien $x,y\in V$ beliebig.
+\begin{itemize}\itemindent25pt
+ \item[{\bf Fall 1:}] Es existieren $i\neq j\in\{1,\dots,p\}$ mit $x\in K_i\wedge y\in K_j$:\\
+ Nun gilt: $\{x,y\}\notin E\Rightarrow \{x,y\}\in E(\komp{G})=:\komp{E}.\hfill\checkmark$
+ \item[{\bf Fall 2:}]Es existieren $z\in V, i\neq j\in\{1,\dots,p\}$ mit $x,y\in K_i\wedge z\in K_j$ (da $G$ nicht zusammenhängend ist muss es Knoten in anderen Komponenten geben):\\
+ $\Rightarrow\{x,z\},\{y,z\}\notin E\Rightarrow \{x,z\},\{y,z\}\in\komp{E}\Rightarrow\text{Der Weg } (x,z,y)\text{ existiert in }\komp{G}.\hfill\checkmark$
+\end{itemize}
+Da dies für je zwei Knoten in $V$ gilt, ist $\komp{G}$ zusammenhängend. 
+\end{proof}
+
+\section*{Aufgabe 4}
+\begin{enumerate}
+ \item Die Aussage $\cone(S\cup T)=\cone(S)+\cone(T)$ ist korrekt.
+  \begin{proof}
+   \begin{align*}
+    &x\in\cone(S\cup T)\\
+    \gdw&\exists \lambda_1,\dots\lambda_k,\alpha_1,\dots,\alpha_n\geq0\in\mathbb{K},s_1,\dots,s_k\in S,t_1,\dots,t_n\in T:\\ 
+    &x=\sum\limits_{i=1}^k\lambda_is_i+\sum\limits_{i=1}^n\alpha_it_i\\
+    \gdw&\exists \lambda_1,\dots\lambda_k,\alpha_1,\dots,\alpha_n\geq0\in\mathbb{K},s_1,\dots,s_k,s'\in S,t_1,\dots,t_n,t'\in T:\\ 
+    &x=s'+t'\wedge s'=\sum\limits_{i=1}^k\lambda_is_i\wedge t'=\sum\limits_{i=1}^n\alpha_it_i\\
+    \gdw&\exists  s'\in\cone(S),t'\in\cone(T): x=s'+t'\\
+    \gdw&x\in\cone(S)+\cone(T)
+   \end{align*}
+  \end{proof}
+ \item Die Aussage $\aff(S\cup T)= \aff(S)+\aff(T)$ ist inkorrekt.
+  \begin{ggbsp}
+   Seien $S=\left\{\divec{0}{1}\right\},T=\left\{\divec{1}{0}\right\}$.\\
+   Dann ist $\aff(S)=S,\aff(T)=T,\aff(S)+\aff(T)=\left\{\divec{1}{1}\right\}$,\\
+   aber $\aff(S\cup T)=\left.\left\{\divec{\alpha}{1-\alpha}\right|\alpha\in\K\right\}$.
+  \end{ggbsp}
+ \item Die Aussage $\aff(S+T)= \aff(S)+\aff(T)$ ist korrekt.
+  \begin{proof}
+   \begin{itemize}
+    \item[{,,$\subseteq$}'']
+     \begin{align*}
+      &\text{Sei }x\in\aff(S+T)\\ 
+      \dann&\exists k\in\N,\lambda\in \K^k\text{ mit }\lambda^T\one=1,x_1,\dots,x_k\in S+T:\\
+      &x=\sum\limits_{i=1}^k\lambda_i x_i\\
+      \stackrel{\text{Def. }S+T}{\dann}&\exists k\in\N,\lambda\in \K^k\text{ mit }\lambda^T\one=1, s_1,\dots,s_k\in S,t_1,\dots,t_k\in T:\\
+      &x=\sum\limits_{i=1}^k\lambda_i(s_i+t_i)\\
+      \dann&\exists k\in\N,\lambda\in \K^k\text{ mit }\lambda^T\one=1, s_1,\dots,s_k\in S,t_1,\dots,t_k\in T:\\
+      &x=\sum\limits_{i=1}^k\lambda_is_i+\sum\limits_{i=1}^k\lambda_it_i\\
+      \stackrel{\text{Def. }\aff}\dann&\exists s'\in\aff(S),t'\in \aff(T):x=s'+t'\\
+      \dann&x\in\aff(S)+\aff(T)
+     \end{align*}
+    \item[{,,$\supseteq$}'']
+     \begin{align*}
+      &\text{Sei }x\in\aff(S)+\aff(T)\\
+      \dann\exists& k,l\in\N,\alpha\in \K^k,\beta\in\K^l\text{ mit }\alpha^T\one=1,\beta^T\one=1,s_1,\dots,s_k\in S,t_1,\dots,t_l\in T:\\
+      x&=\sum\limits_{i=1}^k\alpha_i s_i+\sum\limits_{i=1}^l\beta_i t_i\\
+      \intertext{ \footnotesize Sei o.B.d.A.  $k=l$ ($k<l\dann\alpha_{k+1}=\dots=\alpha_l=0, s_{k+1}=\dots=s_l=s_k,\,k>l$ analog).}
+      \dann\exists& k\in\N,\alpha,\beta\in \K^k\text{ mit }\alpha^T\one=1,\beta^T\one=1,s_1,\dots,s_k\in S,t_1,\dots,t_k\in T:\\
+      x&=\sum\limits_{i=1}^k\alpha_i s_i+\sum\limits_{i=1}^l\beta_i t_i\\
+      &=\sum\limits_{i=1}^k\left(-\frac1k(s_i+t_i)+\underbrace{\sum\limits_{j=1}^k\frac{\alpha_i+\beta_j}k(s_i+t_j)}
+      _{\text{insges.:\,}\sum\limits_{m=1}^k(\alpha_m+\frac1k)s_m+(\beta_m+\frac1k)t_m}\right)\\
+      \intertext{Setze $u_{i,j}:=s_i+t_j \in S+T,\gamma_{i,j}:=\frac{\alpha_i+\beta_j}{k},\delta_i=-\frac1k'\in\K$, wobei gilt:}
+      &\ \sum\limits_{i=1}^k\sum\limits_{j=1}^k\gamma_{i,j}+\sum\limits_{i=1}^k\delta_i=\sum\limits_{i=1}^k\left(\alpha_i+\frac1k\right)-1=1+1-1=1\\
+      \intertext{Es gilt also:}
+      x&=\sum\limits_{i=1}^k\sum\limits_{j=1}^k\gamma_{i,j}u_{i,j}+\sum\limits_{i=1}^k\delta_iu_{i,i}
+      \intertext{und dies ist eine affine Kombination aus $S+T$.}
+     \end{align*}
+   \end{itemize}
+  \end{proof}
+ \item Die Aussage $\conv(S\cup T)= \conv(S)+\conv(T)$ ist inkorrekt.
+  \begin{ggbsp}
+   Seien $S=\left\{\divec{0}{1}\right\},T=\left\{\divec{1}{0}\right\}$.\\
+   Dann ist $\conv(S)=S,\conv(T)=T,\conv(S)+\conv(T)=\left\{\divec{1}{1}\right\}$,\\
+   aber $\conv(S\cup T)=\left.\left\{\divec{\alpha}{1-\alpha}\right|\alpha\in\K\cap[0,1]\right\}$.
+  \end{ggbsp}
+\end{enumerate}
+
+\end{document}
