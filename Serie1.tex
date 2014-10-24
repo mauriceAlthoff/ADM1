@@ -2,11 +2,10 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-\usepackage{dsfont}
+\usepackage{dsfont,alltt}
 \usepackage{amsthm,amssymb,amsmath}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
-
 \newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
 \newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
 \newcommand{\dann}{\ensuremath{\Rightarrow}}
@@ -32,15 +31,15 @@
 %opening
 \title{Einführung in die lineare und kombinatorische Optimierung\\
 Serie 1}
-\author{Sven-Maurice Althoff (FU 4745454)\\Michael R. Jung (HU 502133)\\Felix Völker ()}
+\author{Maurice Althoff (FU 4745454)\\Michael R. Jung (HU 502133)\\Felix Völker (TU 331834)}
 
 \begin{document}
 
 \maketitle
 
 \section*{Aufgabe 1}
-
-\begin{center}
+\begin{enumerate}
+\item\ \\\begin{center}
   \begin{tabular}{| l | c | c | c | c |}
     \hline
                 & Montagehalle(4) & Fertigung(4) & Qualit\"atskontrolle(2) & Preis\\ \hline
@@ -75,6 +74,7 @@ $0 \leq f_{QAT} \leq 2$; $0 \leq f_{QAJ} \leq 2$\\
 $6f_{MFT} + 10f_{MFJ} \leq 45 min$\\
 $2f_{FQT} + 4f_{FQJ} \leq 50 min$\\
 $4f_{QAT} + 4f_{QAJ} \leq 50 min$
+\end{enumerate}
 \section*{Aufgabe 2}
 Formulierung unter Zuhilfenahme der Graphentheorie:\\
 Z.z.: Für alle Graphen $G=(V,E)$ Graph mit $|V|\geq6$ gilt: $\exists V'\subset V:G[V']\cong K_3\vee G[V]\cong \komp{K_3}$.
@@ -103,7 +103,7 @@ Sei $G=(V,E)$ ein unzusammenhängender Graph mit den Zusammenhangskomponenten $K
 \end{itemize}
 Da dies für je zwei Knoten in $V$ gilt, ist $\komp{G}$ zusammenhängend. 
 \end{proof}
-
+\pagebreak
 \section*{Aufgabe 4}
 \begin{enumerate}
  \item Die Aussage $\cone(S\cup T)=\cone(S)+\cone(T)$ ist korrekt.
@@ -163,6 +163,45 @@ Da dies für je zwei Knoten in $V$ gilt, ist $\komp{G}$ zusammenhängend.
    Dann ist $\conv(S)=S,\conv(T)=T,\conv(S)+\conv(T)=\left\{\divec{1}{1}\right\}$,\\
    aber $\conv(S\cup T)=\left.\left\{\divec{\alpha}{1-\alpha}\right|\alpha\in\K\cap[0,1]\right\}$.
   \end{ggbsp}
+ \item Die Aussage $\conv(S+T)= \conv(S)+\conv(T)$ ist korrekt.
+ \begin{proof}
+ 
+ Betrachte Algorithmus $coeff((\alpha),(\beta),(s),(t)$ mit folgenden Eingaben:
+ \begin{itemize}
+  \item Zwei Folgen $(\alpha_i)_{1\leq i\leq k},\alpha_i>0$ und $(\beta_i)_{1\leq i\leq l},\beta_i>0$ mit $\sum\limits_{i=1}^k\alpha_i=\sum\limits_{j=1}^m\beta_j=1$ für ein $c\in\K$.
+  \item Zwei Folgen $(s_i)_{1\leq i\leq k},s_i\in S,(t_i)_{1\leq i\leq l},t_i\in T$.
+ \end{itemize}
+ \begin{alltt}coeff:
+global i=1
+Falls k,l\(\geq 1)\)
+  begin
+    Falls \(\alpha_1>\beta_1\)
+      begin
+        \(\gamma_i:=\alpha_1\)
+        \(u_i:=s_1+t_1\)
+        \(\beta_1:=\beta_1-\alpha_1\)
+        coeff(\((\alpha_2,\dots,\alpha_k),(\beta),(s_2,\dots,s_k),(t))\)
+      end
+    sonst Falls \(\alpha_1<\beta_1\)
+            begin
+              \(\gamma_i:=\beta_1\)
+              \(u_i=s_1+t_1\)
+              \(\alpha_1:=\alpha_1-\beta_1\)
+              coeff(\((\alpha),(\beta_2,\dots,\beta_l),(s),(t_2,\dots,t_l))\)
+            end
+         sonst
+            begin
+              \(\gamma_i:=\beta_1        (=\alpha_1)\)
+              \(u_i=s_1+t_1\)
+              coeff(\((\alpha_2,\dots,\alpha_k),(\beta_2,\dots,\beta_l),(s_2,\dots,s_k),(t_2,\dots,t_l))\)
+            end
+  i:=i+1
+  end
+\end{alltt}
+Da beide Folgen zu $1$ aufsummieren, kann es nicht passieren, dass man mit der einen Folge früher fertig ist. Daher ist das Ergebnis wohldefiniert.
+Es gilt nun: $$\sum\limits_m(\gamma_mu_m)=\sum\limits_i(\alpha_is_i)+\sum\limits_j(\beta_jt_j)$$
+und $\sum\limits_m(\gamma_mu_m)$ ist eine konvexe Kombination in $S+T$.
+ \end{proof}
 \end{enumerate}
 
 \end{document}
