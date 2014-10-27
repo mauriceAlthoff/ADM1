@@ -1,0 +1,69 @@
+\documentclass[a4paper,10pt,german]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{a4wide}
+\usepackage{dsfont,alltt}
+\usepackage{amsthm,amssymb,amsmath}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
+\newcommand{\dann}{\ensuremath{\Rightarrow}}
+\newcommand{\K}{\ensuremath{\mathbb{K}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\one}{\ensuremath{{\mathds{1}}}}
+
+
+\newcommand{\divec}[2]{\ensuremath{\left(\begin{array}{c}
+                                    #1\\
+                                    #2
+                                   \end{array}\right)
+                                   }}
+\newcommand{\trivec}[3]{\ensuremath{\left(\begin{array}{ccc}
+                                    #1\\
+                                    #2\\
+                                    #3
+                                   \end{array}\right)
+                                   }}
+\DeclareMathOperator*{\cone}{cone}
+\DeclareMathOperator*{\conv}{conv}
+\DeclareMathOperator*{\aff}{aff}
+
+\newenvironment{ggbsp}{\begin{proof}[Gegenbeispiel]}{ \end{proof}}
+
+\renewcommand{\labelenumi}{\alph{enumi}\,)}
+
+%opening
+\title{Einführung in die lineare und kombinatorische Optimierung\\
+Serie 2}
+\author{Maurice Althoff (FU 4745454)\\Michael R. Jung (HU 502133)\\Felix Völker (TU 331834)}
+
+\begin{document}
+
+\maketitle
+
+\section*{Aufgabe 5}
+ \begin{enumerate}
+  \item
+   \begin{align*}
+     x_1\dots\,&\text{Anzahl produzierter Müsli-Packungen vom Typ A}\\
+     x_2\dots\,&\text{Anzahl produzierter Müsli-Packungen vom Typ B}\\
+     x_3\dots\,&\text{Anzahl produzierter Müsli-Packungen vom Typ C}\\
+     c:=&\trivec543 b:=\trivec{5000}{11000}{8000}x:=\trivec{x_1}{x_2}{x_3} A:=\trivec{2&3&1}{4&1&2}{3&4&2}\\
+     \text{LP }P:\ \max\ &c^Tx\hspace*{20pt} \text{unter den Nebenbedingungen}\\
+     Ax&\leq b\\
+     x&\geq 0
+   \end{align*}
+   \item
+    \begin{align*}
+     D:\ \min\ &b^Ty \hspace*{20pt} \text{unter den Nebenbedingungen}\\
+     A^Ty&\geq c\\
+     y&\geq 0
+    \end{align*}
+ \end{enumerate}
+\section*{Aufgabe 6}
+\section*{Aufgabe 7}
+\section*{Aufgabe 8}
+
+\end{document}
