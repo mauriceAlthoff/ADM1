@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{a4wide}
 \usepackage{dsfont,alltt}
-\usepackage{amsthm,amssymb,amsmath}
+\usepackage{amsthm,amssymb,amsmath,ifthen}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
@@ -12,20 +12,18 @@
 \newcommand{\dann}{\ensuremath{\Rightarrow}}
 \newcommand{\K}{\ensuremath{\mathbb{K}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\one}{\ensuremath{{\mathds{1}}}}
 
 
-\newcommand{\divec}[2]{\ensuremath{\left(\begin{array}{c}
-                                    #1\\
-                                    #2
-                                   \end{array}\right)
-                                   }}
-\newcommand{\trivec}[3]{\ensuremath{\left(\begin{array}{ccc}
-                                    #1\\
-                                    #2\\
-                                    #3
-                                   \end{array}\right)
-                                   }}
+
+\newcounter{ctra}
+\newcommand{\hilfsstring}{}                             
+% \vect[ausrichtung]{n}{text} erzeugt eine Matrix mit runden Klammern der Breite n
+% text muss dann & und \\ enthalten, z.B. 11&12&13\\21&22&23
+% ausrichtung ist optional und richtet alle Spalten aus, default ist c
+\newcommand{\vect}[3][c]{\setcounter{ctra}{0}\renewcommand{\hilfsstring}{} \whiledo{\value{ctra}<#2}{\edef\hilfsstring{#1\hilfsstring}\stepcounter{ctra}}
+\ensuremath{\left(\begin{array}{\hilfsstring}#3\end{array}\right)}}
 \DeclareMathOperator*{\cone}{cone}
 \DeclareMathOperator*{\conv}{conv}
 \DeclareMathOperator*{\aff}{aff}
@@ -50,19 +48,57 @@ Serie 2}
      x_1\dots\,&\text{Anzahl produzierter Müsli-Packungen vom Typ A}\\
      x_2\dots\,&\text{Anzahl produzierter Müsli-Packungen vom Typ B}\\
      x_3\dots\,&\text{Anzahl produzierter Müsli-Packungen vom Typ C}\\
-     c:=&\trivec543 b:=\trivec{5000}{11000}{8000}x:=\trivec{x_1}{x_2}{x_3} A:=\trivec{2&3&1}{4&1&2}{3&4&2}\\
+     c:=&\vect1{5\\4\\3} b:=\vect[r]1{5000\\11000\\8000}x:=\vect1{x_1\\x_2\\x_3} A:=\vect3{2&3&1\\4&1&2\\3&4&2}\\
      \text{LP }P:\ \max\ &c^Tx\hspace*{20pt} \text{unter den Nebenbedingungen}\\
      Ax&\leq b\\
      x&\geq 0
    \end{align*}
+    ausgeschrieben:
+    \begin{align*}
+   \max\ &5x_1+4x_2+3x_3 &&\text{unter den Nebenbedingungen}\\
+    &2x_1+3x_2+1x_3\leq 5000&&&(y_1)\\
+    &4x_1+1x_2+2x_3\leq 11000&&&(y_2)\\
+    &3x_1+4x_2+2x_3\leq 8000&&&(y_3)\\
+    &x_1,x_2,x_3\geq 0
+    \end{align*}
    \item
     \begin{align*}
      D:\ \min\ &b^Ty \hspace*{20pt} \text{unter den Nebenbedingungen}\\
      A^Ty&\geq c\\
      y&\geq 0
     \end{align*}
+   ausgeschrieben:
+    \begin{align*}
+   \min\ &5000y_1+11000y_2+8000y_3 &&\text{unter den Nebenbedingungen}\\
+    &2y_1+4y_2+3y_3\geq 5\\
+    &3y_1+1y_2+4y_3\geq 4\\
+    &1y_1+2y_2+2y_3\geq 3\\
+    &y_1,y_2,y_3\geq 0
+    \end{align*}
+   \item
+    \begin{itemize}
+    \item Erster Versuch in $P$:\\
+   Möglichst viel von Müsli A, da dieses den meisten Gewinn bringt.
+   Ein zulässiger Vektor wäre $x^1:=\vect1{2500\\0\\0}$. Gewinn wäre $c^Tx^1=12500$.\\
+   \item Erster Versuch in $D$:\\
+   Wir wissen bereits, dass $12500$ eine untere Schranke ist, um möglichst nah heranzukommen muss $y_2$ möglichst klein sein. Hier sieht man nun, dass $y^1:=\vect1{1\\0\\1}$ ein zulässiger Vektor ist. Zielfunktion: $b^Ty^1=13000$.\\
+   Wir wissen also nun: Das Optimum liegt in $[12500,13000]$.
+   \item Zweiter Versuch in $P$:\\
+   Da Nüsse knapp sind und Müsli B viel davon verbraucht versuchen wir $x_1$ groß zu lassen, und ein wenig Müsli C dazu zu nehmen. Da auch Rosinen knapp sind versuchen wir $y_1$ und $y_3$ möglichst genau zu treffen. Wenn wir das Gleichungssystem
+   $$\vect2{2&1\\3&2}\vect1{x_1\\x_3}=\vect1{5000\\8000}$$
+   lösen, so erhalten wir $x^2_1=2000,x^2_3=1000$ Da $(2000,0,1000)^T$ zulässig ist versuchen wir diesen. Gewinn: $c^Tx^2=13000$. Nun wir wissen wir wegen $b^Ty^1=13000$, dass dies optimal ist.
+   \end{itemize} 
  \end{enumerate}
 \section*{Aufgabe 6}
+ \begin{enumerate}
+  \item 
+    \begin{itemize}
+     \item $\{x\in\R^n|\forall\, 1\leq i\leq n:x_i\leq1\wedge-x_i\leq 1\}$
+     \item Setze $I:=\{1,\dots,n\}.\\
+     \left\{x\in\R^n|\forall\, S\subseteq I:\left(\sum\limits_{i\in S}x_i-\sum\limits_{i\in I\setminus S}x_i\right)\leq 1\right\}$
+     \item
+    \end{itemize}
+ \end{enumerate}
 \section*{Aufgabe 7}
 \section*{Aufgabe 8}
 
