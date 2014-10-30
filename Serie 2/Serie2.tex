@@ -31,6 +31,7 @@
 \newenvironment{ggbsp}{\begin{proof}[Gegenbeispiel]}{ \end{proof}}
 
 \renewcommand{\labelenumi}{\alph{enumi}\,)}
+\newcommand{\ra}{\Rightarrow}
 
 %opening
 \title{Einführung in die lineare und kombinatorische Optimierung\\
@@ -95,8 +96,8 @@ Serie 2}
     \begin{itemize}
      \item $\{x\in\R^n|\forall\, 1\leq i\leq n:x_i\leq1\wedge-x_i\leq 1\}$
      \item Setze $I:=\{1,\dots,n\}.\\
-           \left\{x\in\R^n|\forall\, S\subseteq I:\left(\sum\limits_{i\in S}x_i-
-           \sum\limits_{i\in I\setminus S}x_i\right)\leq 1\right\}$
+           \left\{x\in\R^n\left|\forall\, S\subseteq I:\left(\sum\limits_{i\in S}x_i-
+           \sum\limits_{i\in I\setminus S}x_i\right)\leq 1\right.\right\}$
     \end{itemize}
   \item Setze $c':=\vect1{c\\c_0},d':=\vect1{d\\d_0}$, dann kann man das Problem zunächst umschreiben für $x\in \K^{n+1}$ zu:
   \begin{align*}
@@ -113,5 +114,34 @@ Serie 2}
  \end{enumerate}
 \section*{Aufgabe 7}
 \section*{Aufgabe 8}
+{\bf Bemerkung:} Die Aussage ist so nicht ganz richtig, da in 2. und 3. nicht gefordert wird, dass es von jedem Knoten mit einem (Eingangs-)Grad größer Null auch ein (nicht unbedingt gerichteter) Weg zu jedem anderen Knoten mit einem Eingangs-)Grad größer Null existiert. Diese Eigenschaft nennen wir (E).\\[5pt]
+\underline{{\bf Lemma:}} Jeder geschlossene Pfad in einem Digraphen ist eine Vereinigung bogendisjunkter Kreise.
+\begin{proof}
+Sei $(v_0,v_1,\dots,v_n=v_0)$ ein geschlossener Pfad.\\
+Beweis per Induktion über die Länge $n$ des Pfades:\\
+{\bf Induktionsanfang:}\\
+Für $n=0$ und $n=1$ ist nichts zu zeigen, da hier keine Kante doppelt auftreten kann.\\
+{\bf Induktionsvoraussetzung:}\\
+Für alle geschlossenen Pfade der Länge $\leq n$ gilt, dass sie eine Vereinigung bogendisjunkter Kreise sind.\\
+{\bf Induktionsbehauptung:}\\
+Für alle geschlossenen Pfade der Länge $n+1$ gilt, dass sie eine Vereinigung bogendisjunkter Kreise sind.\\
+{\bf Induktionsschritt:}
+\begin{itemize}
+ \item[\emph{Fall 1:}] Die Knoten $v_0,v_1,\dots,v_n$ sind alle paarweise verschieden.\\
+In diesem Fall ist nichts zu zeigen, da dann $(v_0,v_1,\dots,v_{n+1}=v_0)$ ein gerichteter Kreis ist und somit eine ,,Vereinigung" bogendisjunkter Kreise.
+\item[\emph{Fall 2:}]Es existieren zwei Indizes $i<j\in\{1,2,\dots,n\}$ mit $v_i=v_j$.\\
+Dann sind $(v_1,\dots,v_{i-1},v_i,v_{j+1},v_{j+2},\dots,v_{n+1})$ und $(v_i,v_{i+1},\dots,v_j)$ zwei untereinander bogendisjunkte, geschlossene Pfade. Diese haben jeweils eine Länge $\leq n$ und sind somit nach Induktionsvoraussetzung eine Vereinigung bogendisjunkter Kreise. Insgesamt ist also auch $(v_1,\dots,v_{n+1})$ eine Vereinigung bogendisjunkter Kreise.
+\end{itemize}
+\end{proof}
+\begin{itemize}
+  \itemindent=20pt
+  \item[$1. \ra 2.:$] $D$ enthält einen geschlossenen Pfad der alle Bögen aus $A$ benutzt. 
+  (E) gilt also trivialerweise. Außerdem folgt nach obigem Lemma, dass $A$ eine Vereinigung 
+  bogendisjunkter Kreise ist.\hfill $\checkmark$ 
+  \item[$2. \ra 3.:$](E) gilt natürlich weiterhin. Betrachte $v\in V$ mit $|\delta^-(v)|=k$.\\
+  Da $A$ eine Vereinigung bogendisjunkter Kreise ist, liegt $v$ auf genau $k$ bogendisjunkten Kreisen. Folglich existiert zu jeder eingehenden auch eine jeweils verschiedene ausgehende Kante und es gilt somit $|\delta^+(v)|=k$.\hfill$\checkmark$
+  \item[$3. \ra 1.:$] Sei $v_0\in V$ mit $|\delta^+(v_0)|>0$. (Falls kein solcher Knoten existiert, ist nichts zu zeigen.)\\
+  Sei $a_1=(v_0,v_1)$. Da $|\delta^+(v_1)|=|\delta^-(v_1)|$ finden wir (falls $v_0\neq v_1$) einen bisher noch nicht besuchten Bogen $a_2=(v_1,v_2)$. Dies können wir solange fortsetzen, bis wir wieder in $v_0$ ankommen und dieser keine noch nicht besucht ausgehende Kante hat. Das gilt weil für alle $v\in V$ gilt:\,$|\delta^+(v)|=|\delta^-(v)|$. Falls $(v_0,a_1,v_1,\dots,a_n,v_n=v_0)$ noch nicht alle Bögen enthält, so gibt es wegen (E) einen Index $1<i<n$, für den gilt, dass $v_i$ noch einen nicht besuchten ausgehenden Bogen besitzt. Nun können wir das Verfahren von oben mit $v_0'=v_i$ wiederholen. Dann ist $(v_0,a_0,v_1,\dots,v_i=v_0',a_1',v_1',\dots,v'_{n'}=v_i,a_{i+1},\dots,v_n)$ ein geschlossener Pfad. Den letzten Schritt können wir wegen (E) solange wiederholen, bis wir jeden Bogen genau einmal besucht haben. Also gilt: $D$ ist \emph{eulersch}.
 
+\end{itemize}
 \end{document}
