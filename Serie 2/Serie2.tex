@@ -112,6 +112,23 @@ Serie 2}
   \end{align*}
  \end{enumerate}
 \section*{Aufgabe 7}
+Gegeben sei ein Graph $G = (V,E)$ mit Kantengewichten $c_e \ge 0$ für alle $e \in E$. Wir konstruieren einen Graphen $G'$ ähnlich wie im Skript S.45 und nehmen an, dass $V = \{v_1,...,v_n\}$ gilt:
+\begin{enumerate}
+	\item[1.] Die Graphen $G_1 = (U,E_1)$ mit $U := \{u_1,...,u_n\}$ und $G_2 = (W,E_2)$ mit $W := \{w_1,...,w_n\}$ seien knotendisjunkte isomorphe Bilder von $G$, so dass die Abbildungen $v_1 \rightarrow u_i $ und $v_i \rightarrow w_i$, $i = 1,...,n$ Isomorphismen sind.
+	\item[2.] Aus $G_2$ entfernen wir das Bild des Knoten $u$, dann verbinden wir die übrigen Knoten $w_i \in W - \{v\}$ mit ihren isomorphen  Bildern $u_i \in U - \{v\}$ durch eine Kante $u_iw_i$ mit dem Gewicht $c(u_i,w_i)=0$. Die Kanten von $G_1$ und $G_2 - {u}$ enthalten das Gewicht ihrer Urbildkanten.
+	\item[3.] $G'$ entsteht durch die Vereinigung von $G_1$ und $G_2 - \{u\}$ unter Hinzufügung der Kanten $u_iw_i$.
+	\item[4.] Zusätzlich fügen wir $G'$ einen Knoten $v'$ hinzu, der mit unserem Zielknoten v verbunden ist.  
+\end{enumerate}
+
+Beweisidee:
+- v' soll die hinzugefügten Knoten auf eine gerade Anzahl bringen, sodass ein perfektes Matching möglich ist
+- v' muss mit v matchen, sodass es für kein anderes Matching mehr zur Verfügung steht
+- Im Graphen $G_2$ können wir den Weg dann von v abhängig machen, anders habe ich keinen Weg gefunden sicherzustellen, dass v irgendwie mit im Matching einbezogen ist
+- Matchings zwischen zwei Knoten mit verschiedenem Index stellen dann den Pfad zwischen den Knoten im Originalgraphen dar
+- gleicher Index bedeutet kein Pfad
+- Eventuell: Brauchen wir die ganzen 0 Kanten wie im Skript gar nicht, nur die Kante zu v' bin mir aber nicht sicher
+
+
 \section*{Aufgabe 8}
 
 \end{document}
