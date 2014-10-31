@@ -4,7 +4,7 @@
 \usepackage[ngerman]{babel}
 \usepackage{a4wide}
 \usepackage{dsfont,alltt}
-\usepackage{amsthm,amssymb,amsmath,ifthen}
+\usepackage{amsthm,amssymb,amsmath,ifthen,stmaryrd}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
@@ -77,6 +77,7 @@ Serie 2}
     &y_1,y_2,y_3\geq 0
     \end{align*}
    \item
+   Bevor wir versuchen möglichst gute Schranken für unseren Zielfunktionswert zu liefern, sei gesagt, dass jeder zulässige Vektor in $P$ uns eine untere Schranke und jeder zulässige Vektor in $D$ uns eine obere Schranke für den optimalen Zielfunktionswert liefert.
     \begin{itemize}
     \item Erster Versuch in $P$:\\
    Wir nehmen möglichst viel von Müsli A, da dieses den meisten Gewinn bringt.
@@ -99,7 +100,7 @@ Serie 2}
            \left\{x\in\R^n\left|\forall\, S\subseteq I:\left(\sum\limits_{i\in S}x_i-
            \sum\limits_{i\in I\setminus S}x_i\right)\leq 1\right.\right\}$
     \end{itemize}
-  \item Setze $c':=\vect1{c\\c_0},d':=\vect1{d\\d_0}$, dann kann man das Problem zunächst umschreiben für $x\in \K^{n+1}$ zu:
+  \item Setze $c':=\vect1{c\\c_0},d':=\vect1{d\\d_0}$, dann kann man das Problem zunächst umschreiben für $x'\in \K^{n+1}$ zu:
   \begin{align*}
   \min\max\ &\{c'^Tx',d'^Tx'\}\\
             &\underbrace{\vect[r]2{A&0\\{\bf 0}&1\\{\bf 0}&-1}}_{=:A'}x'
@@ -108,26 +109,42 @@ Serie 2}
   Mit der erweiterten Ungleichung wird sichergestellt, dass $x'_{n+1}=1$ ist, und somit die ,,Zielfunktionen"' wieder die gleichen sind.\\
   Als nächstes nutzen wir die Gleichheit $\max\{a,b\}=\frac{a+b+|a-b|}2$ und erhalten:
   \begin{align*}
-      \min\ &((c'+d')^Tx'+|(c'-d')^Tx'|)\\
+      \min\ &\left(\frac{(c'+d')^Tx'+|(c'-d')^Tx'|}2\right)\\
             &A'x'\geq b'
   \end{align*}
  \end{enumerate}
 \section*{Aufgabe 7}
 Gegeben sei ein Graph $G = (V,E)$ mit Kantengewichten $c_e \ge 0$ für alle $e \in E$. Wir konstruieren einen Graphen $G'$ ähnlich wie im Skript S.45 und nehmen an, dass $V = \{v_1,...,v_n\}$ gilt:
 \begin{enumerate}
-	\item[1.] Die Graphen $G_1 = (U,E_1)$ mit $U := \{u_1,...,u_n\}$ und $G_2 = (W,E_2)$ mit $W := \{w_1,...,w_n\}$ seien knotendisjunkte isomorphe Bilder von $G$, so dass die Abbildungen $v_1 \rightarrow u_i $ und $v_i \rightarrow w_i$, $i = 1,...,n$ Isomorphismen sind.
+	\item[1.] Die Graphen $G_1 = (U,E_1)$ mit $U := \{u_1,...,u_n\}$ und $G_2 = (W,E_2)$ mit $W := \{w_1,...,w_n\}$ seien knotendisjunkte isomorphe Bilder von $G$, so dass die Abbildungen $v_i \mapsto u_i $ und $v_i \mapsto w_i$, $i = 1,...,n$ Isomorphismen sind.
 	\item[2.] Aus $G_2$ entfernen wir das Bild des Knoten $u$, dann verbinden wir die übrigen Knoten $w_i \in W - \{v\}$ mit ihren isomorphen  Bildern $u_i \in U - \{v\}$ durch eine Kante $u_iw_i$ mit dem Gewicht $c(u_i,w_i)=0$. Die Kanten von $G_1$ und $G_2 - {u}$ enthalten das Gewicht ihrer Urbildkanten.
 	\item[3.] $G'$ entsteht durch die Vereinigung von $G_1$ und $G_2 - \{u\}$ unter Hinzufügung der Kanten $u_iw_i$.
-	\item[4.] Zusätzlich fügen wir $G'$ einen Knoten $v'$ hinzu, der mit unserem Zielknoten v verbunden ist.  
+	\item[4.] Zusätzlich fügen wir $G'$ einen Knoten $v'$ hinzu, der nur mit dem Bild des Zielknoten $v$ in $G_1$ verbunden ist. Diese Kante hat Gewicht 0.
 \end{enumerate}
-
-Beweisidee:
-- v' soll die hinzugefügten Knoten auf eine gerade Anzahl bringen, sodass ein perfektes Matching möglich ist
-- v' muss mit v matchen, sodass es für kein anderes Matching mehr zur Verfügung steht
-- Im Graphen $G_2$ können wir den Weg dann von v abhängig machen, anders habe ich keinen Weg gefunden sicherzustellen, dass v irgendwie mit im Matching einbezogen ist
-- Matchings zwischen zwei Knoten mit verschiedenem Index stellen dann den Pfad zwischen den Knoten im Originalgraphen dar
-- gleicher Index bedeutet kein Pfad
-- Eventuell: Brauchen wir die ganzen 0 Kanten wie im Skript gar nicht, nur die Kante zu v' bin mir aber nicht sicher
+Zu zeigen: Ein perfektes Matching minimalen Gewichts in $G'$ führt zu einem kürzesten $[u,v]$-Weg gerader Länge in G.
+\begin{proof}
+Zeigen wir zunächst, das $G'$ genau dann ein perfektes Matching enthält, wenn $G$ einen $[u,v]$-Weg gerader Länge enthält.
+  \begin{itemize}
+  \item[$\Leftarrow$] Wählen wir zu einem $[u=x_0,e_1,x_1,\dots,a_n,x_n=v]$-Weg gerader 
+    Länge in $G$ (d.h. $2|n$) folgende Kanten in $G'$:\\
+    Für alle geraden $i\leq n$ wähle die zu $e_i$ korrespondierende Kante in $G_2$.\\
+    Für alle geraden $i\leq< n$ wähle die zu $e_i$ korrespondierende Kante in $G_1$.\\
+    Zusätzlich wähle die Kanten $u_iw_i$ für alle Knoten die nicht auf unserem Pfad liegen
+    und die Kante $v_{G_1}v'$ in $G_1$, da ja nur $v_{G_2}$ durch den Pfad gematcht wurde.
+    Dies liefert uns ein perfektes Matching in $G'$.
+  \item[$\ra$]Sei $M\subseteq E'$ ein perfektes Matching in $G'$. Es gilt:\\
+    $\ra v_{G_1}v'\in M$, da $v'$ nicht anders gematcht werden kann.\\
+    $\ra v_{G_2}$ wird durch eine Kante $wv_{G_2}\in E_2$ gematcht, da $v_{G_1}$ bereits
+    gematcht wurde.
+    Dies setzt sich nun solange fort bis wir nach $u_{G_1}$ gelangen, denn dies ist der 
+    einzige Knoten, der kein Bild im anderen Graphen hat und somit das Verfahren ein Ende 
+    findet. Man erkennt nun, dass wir eine ohne die Kante $v_{G_1}v'$ eine gerade Anzahl von 
+    Kanten besucht haben, die zu einem $[u,v]$-Weg in $G$ gerader Länge korrespondieren.         
+  \end{itemize}
+\end{proof}
+Bleibt zu zeigen, dass ein perfektes Matching minimalen Gewichts in $G'$ eine kürzesten $[u,v]$-Weg in $G$ gerader Länge liefert. Dies zeigen wir per Widerspruch.
+\begin{proof} Sei $M$ ein perfektes Matching minimalen Gewichts in $G'$. Angenommen der im zweiten Teil des obigen Beweises gefundene $[u,v]$-Weg $W$ in $G$ gerader Länge ist kein kürzester $[u,v]$-Weg gerader Länge. Sei $W'$ ein eben solcher. Das Gewicht von $M$ ist mindestens so groß wie das von $W$ (da die Kantengewichte nichtnegativ sind), aber das Gewicht von $W'$ ist kleiner. Nach dem ersten Schritt unseres Beweises lässt sich nun aber auch ein perfektes Matching $M'$ in $G'$ finden, dessen Gewicht genau dem von $M'$ entspricht (denn alle anderen Kanten haben Gewicht 0). Somit war $M$ kein perfektes Matching minimalen Gewichts in $G'.\ \lightning$
+\end{proof}
 
 
 \section*{Aufgabe 8}
