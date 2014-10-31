@@ -131,7 +131,7 @@ Beweisidee:
 
 
 \section*{Aufgabe 8}
-{\bf Bemerkung:} Die Aussage ist so nicht ganz richtig, da in 2. und 3. nicht gefordert wird, dass es von jedem Knoten mit einem (Eingangs-)Grad größer Null auch ein (nicht unbedingt gerichteter) Weg zu jedem anderen Knoten mit einem Eingangs-)Grad größer Null existiert. Diese Eigenschaft nennen wir (E).\\[5pt]
+{\bf Bemerkung:} Die Aussage ist so nicht ganz richtig, da in 2. und 3. nicht gefordert wird, dass es von jedem Knoten mit einem (Eingangs-)Grad größer Null auch ein (nicht unbedingt gerichteter) Weg zu jedem anderen Knoten mit einem (Eingangs-)Grad größer Null existiert. Diese Eigenschaft nennen wir (E).\\[5pt]
 \underline{{\bf Lemma:}} Jeder geschlossene Pfad in einem Digraphen ist eine Vereinigung bogendisjunkter Kreise.
 \begin{proof}
 Sei $(v_0,v_1,\dots,v_n=v_0)$ ein geschlossener Pfad.\\
@@ -158,7 +158,7 @@ Dann sind $(v_1,\dots,v_{i-1},v_i,v_{j+1},v_{j+2},\dots,v_{n+1})$ und $(v_i,v_{i
   \item[$2. \ra 3.:$](E) gilt natürlich weiterhin. Betrachte $v\in V$ mit $|\delta^-(v)|=k$.\\
   Da $A$ eine Vereinigung bogendisjunkter Kreise ist, liegt $v$ auf genau $k$ bogendisjunkten Kreisen. Folglich existiert zu jeder eingehenden auch eine jeweils verschiedene ausgehende Kante und es gilt somit $|\delta^+(v)|=k$.\hfill$\checkmark$
   \item[$3. \ra 1.:$] Sei $v_0\in V$ mit $|\delta^+(v_0)|>0$. (Falls kein solcher Knoten existiert, ist nichts zu zeigen.)\\
-  Sei $a_1=(v_0,v_1)$. Da $|\delta^+(v_1)|=|\delta^-(v_1)|$ finden wir (falls $v_0\neq v_1$) einen bisher noch nicht besuchten Bogen $a_2=(v_1,v_2)$. Dies können wir solange fortsetzen, bis wir wieder in $v_0$ ankommen und dieser keine noch nicht besucht ausgehende Kante hat. Das gilt weil für alle $v\in V$ gilt:\,$|\delta^+(v)|=|\delta^-(v)|$. Falls $(v_0,a_1,v_1,\dots,a_n,v_n=v_0)$ noch nicht alle Bögen enthält, so gibt es wegen (E) einen Index $1<i<n$, für den gilt, dass $v_i$ noch einen nicht besuchten ausgehenden Bogen besitzt. Nun können wir das Verfahren von oben mit $v_0'=v_i$ wiederholen. Dann ist $(v_0,a_0,v_1,\dots,v_i=v_0',a_1',v_1',\dots,v'_{n'}=v_i,a_{i+1},\dots,v_n)$ ein geschlossener Pfad. Den letzten Schritt können wir wegen (E) solange wiederholen, bis wir jeden Bogen genau einmal besucht haben. Also gilt: $D$ ist \emph{eulersch}.
+  Sei $a_1=(v_0,v_1)$. Da $|\delta^+(v_1)|=|\delta^-(v_1)|$ finden wir (falls $v_0\neq v_1$) einen bisher noch nicht besuchten Bogen $a_2=(v_1,v_2)$. Dies können wir solange fortsetzen, bis wir wieder in $v_0$ ankommen und dieser keine noch nicht besucht ausgehende Kante hat. Das gilt, weil für alle $v\in V$ gilt:\,$|\delta^+(v)|=|\delta^-(v)|$. Falls $(v_0,a_1,v_1,\dots,a_n,v_n=v_0)$ noch nicht alle Bögen enthält, so gibt es wegen (E) einen Index $1<i<n$, für den gilt, dass $v_i$ noch einen nicht besuchten ausgehenden Bogen besitzt. Nun können wir das Verfahren von oben mit $v_0'=v_i$ wiederholen. Dann ist $(v_0,a_0,v_1,\dots,v_i=v_0',a_1',v_1',\dots,v'_{n'}=v_i,a_{i+1},\dots,v_n)$ ein geschlossener Pfad. Den letzten Schritt können wir wegen (E) solange wiederholen, bis wir jeden Bogen genau einmal besucht haben. Also gilt: $D$ ist \emph{eulersch}.
 
 \end{itemize}
 \end{document}
