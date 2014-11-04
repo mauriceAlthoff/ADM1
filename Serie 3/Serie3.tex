@@ -14,6 +14,8 @@
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\R}{\ensuremath{\mathbb{R}}}
 \newcommand{\one}{\ensuremath{{\mathds{1}}}}
+\newcommand{\NP}{\ensuremath{\mathcal{NP\ }}}
+\newcommand{\Poly}{\ensuremath{\mathcal{P\ }}}
 
 
 
@@ -32,6 +34,7 @@
 
 \renewcommand{\labelenumi}{\alph{enumi}\,)}
 \newcommand{\ra}{\Rightarrow}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 %opening
 \title{Einführung in die lineare und kombinatorische Optimierung\\
@@ -49,5 +52,51 @@ Serie 3}
 \section*{Aufgabe 11}
 
 \section*{Aufgabe 12}
-
+Dass die genannten Probleme in \NP sind, sieht man leicht:
+\begin{enumerate}
+ \item Das Zertifikat ist eine Permutation $\pi$ der Knoten\footnote{$\pi:\{1,2,\dots,|V|\}\to V$ und $\pi$ ist bijektiv.}. Hier muss man nun prüfen, ob \\
+ $(\pi(1),\dots,\pi(|V|),\pi(1))$ ein Hamiltonkreis ist und, falls ja, ob die Summe der Kantengewichte auf diesem Kreis $K$ nicht übersteigt.
+ \item Das Zertifikat ist eine Permutation $\pi$ der Knoten\footnotemark[1]. Hier muss man nun prüfen, ob \\
+ $[\pi(1),\dots,\pi(|V|)]$ ein Hamiltonweg und $\pi(1)=u\wedge \pi(|V|)=v$ ist.
+ \item Das Zertifikat ist eine Permutation $\pi$ der Knoten\footnotemark[1]. Hier muss man nun prüfen, ob \\
+ $[\pi(1),\dots,\pi(|V|)]$ ein Hamiltonweg ist.
+ \item Im gerichteten Fall funktionieren die gleichen Zertifikate, hier muss man stattdessen überprüfen ob es die gerichteten Äquivalente sind.
+\end{enumerate}
+Reduktionen:
+\begin{enumerate}
+ \item Gegeben sei ein Graph $G=(V,E)$. Wir definieren uns nun noch eine Kantenbewertung $c:E\to \N$ mit $c(e)=1\ \forall\,e\in E$.\\
+ Nun gibt es genau dann einen Hamiltonkreis in $G$, wenn es eine Tour in $G$ der Länge $\leq |V|$ gibt.
+ \begin{proof}
+   In $G$ existiert ein Hamiltonkreis.\\
+   \gdw\ Es existiert eine Permutation $\pi$ der Knoten mit $e_i:=\{\pi(i),\pi(i+1)\}\in E\ \forall 1\leq i< |V|$ und $e_{|V|}:=\{\pi(|V|),\pi(1)\}\in E$.\\
+   \gdw\ Es existiert eine Permutation $\pi$ der Knoten mit $e_i:=\{\pi(i),\pi(i+1)\}\in E\ \forall 1\leq i< |V|$ und $e_{|V|}:=\{\pi(|V|),\pi(1)\}\in E$ und es gilt $\sum\limits_{i=1}^{|V|}c(e_i)=n$.\\
+   \gdw\ Es existiert eine Tour in $G$ mit Gewicht $=|V|$.\\
+   \gdw\ Es existiert eine Tour in $G$ mit Gewicht $\leq|V|$.\\
+   Die letzte Äquivalenz folgt, da per Konstruktion jede Tour (die ja alle genau $|V|$ Kanten haben) genau Gewicht $|V|$ hat.
+ \end{proof}
+ \item Gegeben sei ein Graph $G=(V,E)$. Sei $u\in V$ beliebig.\\
+ Konstruiere $G'=(V':=V\cup\{u'\},E':=E\cup\{\{v,u'\}|\{v,u\}\in E\})$.\\
+ Nun gibt es genau dann einen Hamiltonkreis in $G$, wenn es einen $[u,u']$-Hamiltonweg in $G'$ gibt.
+ \begin{proof}
+   In $G$ existiert ein Hamiltonkreis.\\
+   \gdw\ Es ex. eine Permutation $\pi$ von $V'$ mit $\pi(1)=u,\ \pi(|V'|)=u',\\ \{\pi(i),\pi(i+1)\}\in E\ \forall 1\leq i< |V|$ und $\{\pi(|V|),\pi(1)=u\}\in E$.\\
+   (Dies gilt, da der ``Startknoten'' beliebig gewählt werden kann.)\\
+   \gdw\ Es ex. eine Permutation $\pi$ von $V'$ mit $\pi(1)=u,\ \pi(|V'|)=u'$ und \\$\{\pi(i),\pi(i+1)\}\in E'\ \forall 1\leq i< |V'|$. (Für $i=|V'|-1=|V|:\{\pi(|V|),u'\}\in E'$.)\\
+   (Dies gilt, da $u$ und $u'$ die gleiche Nachbarschaft besitzen.)\\
+   \gdw\ Es existiert ein $[u,u']$-Hamiltonweg  in $G'$.
+ \end{proof}
+ \item Da wir nun bereits wissen, dass das $[u,v]$-Hamiltonweg-Problem \NP-vollständig ist werden wir dieses auf das allgemeine Hamiltonweg-Problem reduzieren.\\
+ Sei $G=(V,E)$ ein Graph und seien $u,v\in V$ zwei ausgezeichnete Knoten. $G$ enthält genau dann einen $[u,v]$-Hamiltonweg, wenn $G'=(V':=V\cup\{u',v'\},E':=E\cup\{\{u',u\},\{v,v'\}\})$ einen Hamiltonweg besitzt.
+ \begin{proof}~
+   \begin{itemize}
+    \item[``$\ra$''] Sei $|V|=n$ und sei $[u=v_1,v_2,\dots,v_n=v]$ ein $[u,v]$-Hamiltonweg in $G$, dann ist $[u',v_1,v_2,\dots,v_n,v']$ ein Hamiltonweg in $G'$.
+    \item[``$\Leftarrow$''] Sei $[x_0,x_1,\dots,x_{n+1}]$ ein Hamiltonweg in $G'$. Da $\deg(u')=1$ muss gelten, dass $u'\in\{x_0,x_{n+1}\}$, denn alle anderen Knoten müssen ja mindestens Grad 2 haben. Da auch $\deg(v')=1$, gilt:
+    $v'\in \{x_0,x_{n+1}\}\setminus \{u'\}$. Also existiert ein $[u',v']$-Hamiltonweg oder ein $[v',u']$-Hamiltonweg, im ungerichteten Fall also beide. Sei nun o.B.d.A. $x_0=u'$ und $x_{n+1}=v'$.
+    Da $u'$ nur einen Nachbarn, nämlich $u$, und $v'$ nur einen Nachbarn, nämlich $v$ hat, muss gelten: $x_1=u\wedge x_n=v$. Also ist $[x_1,x_2,\dots,x_n]$ ein $[u,v]$-Hamiltonweg in $G$.
+   \end{itemize}
+  \end{proof}
+  \item Die Konstruktioen und Beweise funktionieren genauso, dabei haben wir darauf geachtet, dass man bei hinzugefügten Bögen die geschweiften Klammern nur
+  durch runde zu ersetzten braucht, d.h. die richtige Orientierung ist bereits beachtet. In a) verändert sich also tatsächlich nichts, außer dass $c$ nun eine Bogenbewertung ist.
+  In b) bekommt $u'$ nur die eingehenden Kanten von $u$ und in c) ist durch die Orientierung bereits sichergestellt, dass ein gerichteter Hamiltonweg bereits ein $[u',v']$-Hamiltonweg ist.
+\end{enumerate}
 \end{document}
