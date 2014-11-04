@@ -48,6 +48,30 @@ Serie 3}
 \section*{Aufgabe 9}
 
 \section*{Aufgabe 10}
+Sei $\mathcal{Z}=\{Z_i|1\leq i\leq m\}$ eine Familie von Klauseln über Variablen aus $X=\{x_1,\dots,x_n\}$.\\
+Folgender Algorithmus \verb Alg  findet eine Belegung \verb f  von $X$, die mindestens die Hälfte der Klauseln erfüllt:
+\begin{alltt}
+Alg:
+FOR i=1 TO n:
+  BEGIN
+    A:=\{Z \(\in\mathcal{Z}\) |x_i \(\in\) Z\}
+    B:=\{Z \(\in\mathcal{Z}\) |\(\neg\)x_i \(\in\) Z\}
+    IF |A|<|B| THEN f(x_i)=falsch ELSE f(x_i)=wahr
+    \(\mathcal{Z}\)=\(\mathcal{Z}\)\(\setminus\)(A\(\cup\)B)
+  END
+\end{alltt}
+\begin{itemize}
+ \item Analysieren wir zunächst die Laufzeit:\\
+       Eingabegröße ist ungefähr $\sum\limits_{i=1}^m \langle Z_i\rangle =:g$.
+       In jedem Schritt müssen wir zur Berechnung von \verb A  und \verb B  maximal alle Klauseln, deren Kodierung insgesamt in der Größe durch $g$ beschränkt ist, durchsuchen. Die entsprechenden Indizees
+       in \verb A  und \verb B  zu speichern (Speicherbbedarf als Bitmaske: $m$), reicht völlig aus, desweiteren können wir bereits beim Scan die entsprechenden Klauseln löschen. Also ist die Laufzeit jedes Schleifendurchlaufs
+       durch $g+2m$ beschränkt. Da wir insgesamt $n$ Durchläufe haben, ist die ganze Laufzeit durch $n(g+2m)$ beschränkt. Es gilt: $n\leq g,\ m\leq g$.\\
+       Folglich haben wir eine Laufzeitschranke von $g(g+2g)\in \mathcal{O}(g^2)$.
+ \item Nun zur Korrektheit:\\
+       Am Ende ist $\mathcal{Z}=\varnothing$, denn jede Klausel wird entfernt, wenn die Variable mit dem kleinsten vorkommenden Index betrachtet wird. Jedes mal wenn Klauseln entfernt werden, 
+       wird durch die definierte Belegung mindestens die Hälfte dieser erfüllt. Da am Ende aber alle Klauseln entfernt werden, wird also mindestens die Hälfte aller Klauseln erfüllt.\hfill $\checkmark$
+\end{itemize}
+
 
 \section*{Aufgabe 11}
 
