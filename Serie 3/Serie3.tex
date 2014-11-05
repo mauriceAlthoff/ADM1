@@ -17,7 +17,8 @@
 \newcommand{\NP}{\ensuremath{\mathcal{NP\ }}}
 \newcommand{\Poly}{\ensuremath{\mathcal{P\ }}}
 
-
+\newcommand{\ad}[2][k]{\ensuremath{a^{(#1)}_{#2}}}
+\newcommand{\aij}[1][k]{\ad[#1]{i,j}}
 
 \newcounter{ctra}
 \newcommand{\hilfsstring}{}                             
@@ -63,8 +64,8 @@ FOR i=1 TO n:
 \begin{itemize}
  \item Analysieren wir zunächst die Laufzeit:\\
        Eingabegröße ist ungefähr $\sum\limits_{i=1}^m \langle Z_i\rangle =:g$.
-       In jedem Schritt müssen wir zur Berechnung von \verb A  und \verb B  maximal alle Klauseln, deren Kodierung insgesamt in der Größe durch $g$ beschränkt ist, durchsuchen. Die entsprechenden Indizees
-       in \verb A  und \verb B  zu speichern (Speicherbbedarf als Bitmaske: $m$), reicht völlig aus, desweiteren können wir bereits beim Scan die entsprechenden Klauseln löschen. Also ist die Laufzeit jedes Schleifendurchlaufs
+       In jedem Schritt müssen wir zur Berechnung von \verb A  und \verb B  maximal alle Klauseln, deren Kodierung insgesamt in der Größe durch $g$ beschränkt ist, durchsuchen. Die entsprechenden Indizes
+       in \verb A  und \verb B  zu speichern (Speicherbedarf als Bitmaske: $m$), reicht völlig aus, des Weiteren können wir bereits beim Scan die entsprechenden Klauseln löschen. Also ist die Laufzeit jedes Schleifendurchlaufs
        durch $g+2m$ beschränkt. Da wir insgesamt $n$ Durchläufe haben, ist die ganze Laufzeit durch $n(g+2m)$ beschränkt. Es gilt: $n\leq g,\ m\leq g$.\\
        Folglich haben wir eine Laufzeitschranke von $g(g+2g)\in \mathcal{O}(g^2)$.
  \item Nun zur Korrektheit:\\
@@ -74,11 +75,29 @@ FOR i=1 TO n:
 
 
 \section*{Aufgabe 11}
-
+Sei $D=(V,A)$ ein Digraph mit $|V|=n$ und Adjazenzmatrix $A\in\R^{n\times n}$. Im folgenden gehen wir o.B.d.A. davon aus, dass $V=\{1,2,\dots,n\}$ gilt. Außerdem sei $A^k=:\left(\aij\right)_{1\leq i,j\leq n}$.\\
+Zeigen zunächst: \begin{itemize}
+                 \item[] In \aij steht die Anzahl aller verschiedenen Ketten der Länge genau $k$ zwischen den Knoten $i$ und $j$.
+                 \end{itemize}
+\begin{proof}
+  Beweis per Induktion über $k$.\\
+  {\bf Induktionsanfang}\\
+  Für $k=1$ entspricht dies genau der Definition der Adjazenzmatrix.\\
+  {\bf Induktionsvoraussetzung}\\
+  In \aij steht die Anzahl der verschiedenen Ketten der Länge genau $k$ zwischen den Knoten $i$ und $j$.\\
+  {\bf Induktionsbehauptung}\\
+  In \aij[k+1] steht die Anzahl der verschiedenen Ketten der Länge $k+1$ zwischen den Knoten $i$ und $j$.\\
+  {\bf Induktionsschritt}\\
+  Betrachte \aij[k+1].\\
+  Nach Definition der Matrixmultiplikation ist $A^{k+1}=A^kA$ und somit $\aij[k+1]=\sum\limits_{p=1}^n\ad{i,p}\cdot \ad1{p,j}$.\\
+  Nach Induktionsvoraussetzung ist \ad{i,p} die Anzahl der verschiedenen Ketten der Länge $k$ von $i$ nach $p$. Dies wird nun mit der Anzahl der Kanten zwischen $p$ und $j$, nämlich \ad[1]{p,j}, multipliziert, und wir erhalten die Anzahl der verschiedenen Ketten zwischen $i$ und $j$ der Länge $k+1$ mit vorletztem Knoten $p$. Wenn wir dies nun über alle möglichen vorletzten Knoten summieren, erhalten wir genau das gewünschte.
+\end{proof}
+Definiere $\mathcal{A}:=\sum_{p=1}^nA^p$. In $\mathcal{A}_{i,j}$ steht also folglich die Anzahl der verschiedenen Ketten von $i$ nach $j$ der Länge $\leq n$. Ist $j$ von $i$ aus erreichbar, so muss dieser Eintrag verschieden 0 sein, da ein Weg auch eine Kette ist und ein $i$-$j$-Weg höchstens Länge $n$ (für $i\neq j$ sogar nur Länge $n-1$) haben kann.
+SCHLUSS FEHLT NOCH.
 \section*{Aufgabe 12}
 Dass die genannten Probleme in \NP sind, sieht man leicht:
 \begin{enumerate}
- \item Das Zertifikat ist eine Permutation $\pi$ der Knoten\footnote{$\pi:\{1,2,\dots,|V|\}\to V$ und $\pi$ ist bijektiv.}. Hier muss man nun prüfen, ob \\
+ \item Das Zertifikat ist eine Permutation $\pi$ der Knoten\footnote{Für einen Graphen $G=(V,E)$ oder einen Digraphen $D=(V,A)$ ist eine Permutation der Knoten eine bijektive Abbildung $\pi:\{1,2,\dots,|V|\}\to V$.}. Hier muss man nun prüfen, ob \\
  $(\pi(1),\dots,\pi(|V|),\pi(1))$ ein Hamiltonkreis ist und, falls ja, ob die Summe der Kantengewichte auf diesem Kreis $K$ nicht übersteigt.
  \item Das Zertifikat ist eine Permutation $\pi$ der Knoten\footnotemark[1]. Hier muss man nun prüfen, ob \\
  $[\pi(1),\dots,\pi(|V|)]$ ein Hamiltonweg und $\pi(1)=u\wedge \pi(|V|)=v$ ist.
