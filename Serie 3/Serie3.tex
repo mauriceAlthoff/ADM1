@@ -77,23 +77,41 @@ FOR i=1 TO n:
 \section*{Aufgabe 11}
 Sei $D=(V,A)$ ein Digraph mit $|V|=n$ und Adjazenzmatrix $A\in\R^{n\times n}$. Im folgenden gehen wir o.B.d.A. davon aus, dass $V=\{1,2,\dots,n\}$ gilt. Außerdem sei $A^k=:\left(\aij\right)_{1\leq i,j\leq n}$.\\
 Zeigen zunächst: \begin{itemize}
-                 \item[] In \aij steht die Anzahl aller verschiedenen Ketten der Länge genau $k$ zwischen den Knoten $i$ und $j$.
+                 \item[] In \aij steht die Anzahl aller verschiedenen gerichteten Ketten der Länge genau $k$ zwischen den Knoten $i$ und $j$.
                  \end{itemize}
+Im Folgenden meinen wir mit Ketten/Wegen/Kreisen immer gerichtete Ketten/Wege/Kreise.
 \begin{proof}
   Beweis per Induktion über $k$.\\
   {\bf Induktionsanfang}\\
   Für $k=1$ entspricht dies genau der Definition der Adjazenzmatrix.\\
   {\bf Induktionsvoraussetzung}\\
-  In \aij steht die Anzahl der verschiedenen Ketten der Länge genau $k$ zwischen den Knoten $i$ und $j$.\\
+  \aij =Anzahl der verschiedenen Ketten der Länge genau $k$ zwischen den Knoten $i$ und $j$.\\
   {\bf Induktionsbehauptung}\\
-  In \aij[k+1] steht die Anzahl der verschiedenen Ketten der Länge $k+1$ zwischen den Knoten $i$ und $j$.\\
+  n \aij[k+1] =Anzahl der verschiedenen Ketten der Länge $k+1$ zwischen den Knoten $i$ und $j$.\\
   {\bf Induktionsschritt}\\
   Betrachte \aij[k+1].\\
   Nach Definition der Matrixmultiplikation ist $A^{k+1}=A^kA$ und somit $\aij[k+1]=\sum\limits_{p=1}^n\ad{i,p}\cdot \ad1{p,j}$.\\
   Nach Induktionsvoraussetzung ist \ad{i,p} die Anzahl der verschiedenen Ketten der Länge $k$ von $i$ nach $p$. Dies wird nun mit der Anzahl der Kanten zwischen $p$ und $j$, nämlich \ad[1]{p,j}, multipliziert, und wir erhalten die Anzahl der verschiedenen Ketten zwischen $i$ und $j$ der Länge $k+1$ mit vorletztem Knoten $p$. Wenn wir dies nun über alle möglichen vorletzten Knoten summieren, erhalten wir genau das gewünschte.
 \end{proof}
-Definiere $\mathcal{A}:=\sum_{p=1}^nA^p$. In $\mathcal{A}_{i,j}$ steht also folglich die Anzahl der verschiedenen Ketten von $i$ nach $j$ der Länge $\leq n$. Ist $j$ von $i$ aus erreichbar, so muss dieser Eintrag verschieden 0 sein, da ein Weg auch eine Kette ist und ein $i$-$j$-Weg höchstens Länge $n$ (für $i\neq j$ sogar nur Länge $n-1$) haben kann.
-SCHLUSS FEHLT NOCH.
+Definiere $R:=\sum_{p=1}^nA^p$. In $R_{i,j}$ steht also folglich die Anzahl der verschiedenen Ketten von $i$ nach $j$ der Länge $\leq n$. Ist $j$ von $i$ aus erreichbar, so muss dieser Eintrag verschieden 0 sein, da
+\begin{itemize}
+ \item ein Weg auch eine Kette ist,
+ \item wenn eine $i$-$j$-Kette existiert, auch ein $i$-$j$-Weg existiert und
+ \item ein $i$-$j$-Weg höchstens Länge $n$ (für $i\neq j$ sogar nur Länge $n-1$) haben kann.
+\end{itemize}
+Zeige nun: $D$ stark zusammenhängend \gdw $R_{i,j}\neq0\,\forall 1\leq i,j\leq n$
+\begin{proof}~
+\begin{itemize}
+ \item[``$\dann$'']
+ Seien $i,j\in V, i\neq j$. Dann existiert ein $i$-$j$-Weg in in $D$. Also ist nach obigem Beweis $R_{i,j}\neq 0$.
+ Für $i=j$ gilt, das jeder Knoten auf einem Kreis liegen muss, da per definitionem auch $i$ von $i$ aus erreichbar sein muss.
+ Also sind auch die Diagonaleinträge nicht 0.\hfill$\checkmark$
+ \item[``$\Leftarrow$''] Betrachte zwei Knoten $i,j$. Für $i=j$ gilt, dass $i$ auf einem Kreis liegt, da $R_{i,i}\neq 0$. Also ist $i$ von $i$ aus erreichbar.
+ Für $i\neq j$ gilt, dass ein $i$-$j$-Weg und ein $j$-$i$-Weg existieren, weil $R_{i,j}$ respektive $R_{j,i}$ verschieden 0 sind. Also ist $D$ stark zusammenhängend.
+\end{itemize}
+\end{proof}
+
+
 \section*{Aufgabe 12}
 Dass die genannten Probleme in \NP sind, sieht man leicht:
 \begin{enumerate}
