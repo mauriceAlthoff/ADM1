@@ -47,6 +47,22 @@ Serie 3}
 \maketitle
 
 \section*{Aufgabe 9}
+Berechnen wir zunächst die Kodierungslänge der größten vorkommenden Zahl im Algorithmus. Für 
+$|n|\geq 1$ ist das offensichtlich das Ergebnis. Was berechnet also der Algorithmus? Für ein 
+festes $k$ ist dies $n^{3^k}$, und da $k=\langle n\rangle$, ist dies 
+$c:=n^{3^{\lceil\log_2(|n|+1)\rceil+1}}$. Schätzen wir zunächst einmal ab: $\lceil\log_2(|n|
++1)\rceil+1\leq 2+\log_2|n|$, außerdem gilt, dass ${\log_2x}=\frac{\log_3x}{\log_32}$ und 
+$\log_32>\frac12$. Somit ist $3^{\lceil\log_2(|n|+1)\rceil+1}\leq 3^{2+\frac{\log_3|n|}
+{\log_32}}<9\cdot3^{2\log_3|n|}=9|n|^2$. \\
+Folglich ist $\langle c\rangle\leq\lceil \log_2(|n^{(3n^2)}|+1)\rceil+1\leq \log_2|n^{(3n^2)}|+2=3n^2\log_2|n|+2\in\mathcal{O}(n^2\log|n|)$.\\
+Zählen wir nun die elementaren Operationen. In jedem Schleifendurchlauf haben wir 2 Multiplikationen sowie eine Addition (Erhöhung des Zählers), also müssen wir für die Laufzeit des Algorithmus $\langle c\rangle$ mit $\langle n\rangle \cdot 3$ multiplizieren.
+Es ergibt sich:  
+\begin{align*}
+f_A(n)&\leq (3n^2\log_2|n|+2)\cdot 3(\lceil\log_2(|n|+1)\rceil+1)\\
+&\leq(3n^2\log_2|n|+2)\cdot (3\log_2(|n|)+6)\\
+&\leq 9n^2(\log_2{|n|})^2+6\log_2{|n|}+18n^2\log_2|n|+12\\
+&\in \mathcal{O}(n^2(\log|n|)^2)
+\end{align*}
 
 \section*{Aufgabe 10}
 Sei $\mathcal{Z}=\{Z_i|1\leq i\leq m\}$ eine Familie von Klauseln über Variablen aus $X=\{x_1,\dots,x_n\}$.\\
