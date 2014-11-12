@@ -1,0 +1,51 @@
+\documentclass[a4paper,10pt,german]{scrartcl}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{a4wide}
+\usepackage{dsfont,alltt}
+\usepackage{amsthm,amssymb,amsmath,ifthen,stmaryrd}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
+\newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
+\newcommand{\dann}{\ensuremath{\Rightarrow}}
+\newcommand{\K}{\ensuremath{\mathbb{K}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\one}{\ensuremath{{\mathds{1}}}}
+\newcommand{\NP}{\ensuremath{\mathcal{NP\ }}}
+\newcommand{\Poly}{\ensuremath{\mathcal{P\ }}}
+
+\newcommand{\ad}[2][k]{\ensuremath{a^{(#1)}_{#2}}}
+\newcommand{\aij}[1][k]{\ad[#1]{i,j}}
+
+\newcounter{ctra}
+\newcommand{\hilfsstring}{}                             
+% \vect[ausrichtung]{n}{text} erzeugt eine Matrix mit runden Klammern der Breite n
+% text muss dann & und \\ enthalten, z.B. 11&12&13\\21&22&23
+% ausrichtung ist optional und richtet alle Spalten aus, default ist c
+\newcommand{\vect}[3][c]{\setcounter{ctra}{0}\renewcommand{\hilfsstring}{} \whiledo{\value{ctra}<#2}{\edef\hilfsstring{#1\hilfsstring}\stepcounter{ctra}}
+\ensuremath{\left(\begin{array}{\hilfsstring}#3\end{array}\right)}}
+\DeclareMathOperator*{\cone}{cone}
+\DeclareMathOperator*{\conv}{conv}
+\DeclareMathOperator*{\aff}{aff}
+
+\newenvironment{ggbsp}{\begin{proof}[Gegenbeispiel]}{ \end{proof}}
+
+\renewcommand{\labelenumi}{\alph{enumi}\,)}
+\newcommand{\ra}{\Rightarrow}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+%opening
+\title{Einführung in die lineare und kombinatorische Optimierung\\
+Serie 4}
+\author{Maurice Althoff (FU 4745454)\\Michael R. Jung (HU 502133)\\Felix Völker (TU 331834)}
+
+\begin{document}
+
+\maketitle
+
+
+
+\end{document}
