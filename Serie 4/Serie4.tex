@@ -7,35 +7,6 @@
 \usepackage{amsthm,amssymb,amsmath,ifthen,stmaryrd}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
-\newcommand{\komp}[1]{\ensuremath{\overline{#1}}}
-\newcommand{\gdw}{\ensuremath{\Leftrightarrow}}
-\newcommand{\dann}{\ensuremath{\Rightarrow}}
-\newcommand{\K}{\ensuremath{\mathbb{K}}}
-\newcommand{\N}{\ensuremath{\mathbb{N}}}
-\newcommand{\R}{\ensuremath{\mathbb{R}}}
-\newcommand{\one}{\ensuremath{{\mathds{1}}}}
-\newcommand{\NP}{\ensuremath{\mathcal{NP\ }}}
-\newcommand{\Poly}{\ensuremath{\mathcal{P\ }}}
-
-\newcommand{\ad}[2][k]{\ensuremath{a^{(#1)}_{#2}}}
-\newcommand{\aij}[1][k]{\ad[#1]{i,j}}
-
-\newcounter{ctra}
-\newcommand{\hilfsstring}{}                             
-% \vect[ausrichtung]{n}{text} erzeugt eine Matrix mit runden Klammern der Breite n
-% text muss dann & und \\ enthalten, z.B. 11&12&13\\21&22&23
-% ausrichtung ist optional und richtet alle Spalten aus, default ist c
-\newcommand{\vect}[3][c]{\setcounter{ctra}{0}\renewcommand{\hilfsstring}{} \whiledo{\value{ctra}<#2}{\edef\hilfsstring{#1\hilfsstring}\stepcounter{ctra}}
-\ensuremath{\left(\begin{array}{\hilfsstring}#3\end{array}\right)}}
-\DeclareMathOperator*{\cone}{cone}
-\DeclareMathOperator*{\conv}{conv}
-\DeclareMathOperator*{\aff}{aff}
-
-\newenvironment{ggbsp}{\begin{proof}[Gegenbeispiel]}{ \end{proof}}
-
-\renewcommand{\labelenumi}{\alph{enumi}\,)}
-\newcommand{\ra}{\Rightarrow}
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 
 %opening
 \title{Einführung in die lineare und kombinatorische Optimierung\\
@@ -46,6 +17,26 @@ Serie 4}
 
 \maketitle
 
+\section{Aufgabe 16}
 
+Eingabe: ein Graph $ G=(V,E), c \in E $ mit Kantengewichten $c(W) \forall e \in E$ \\
+Ausgabe: Wald $W \subseteq E$ mit max Gewicht $c(W)$ \\
+\begin{enumerate}\itemsep1pt \parskip0pt \parsep0pt
+\item (Sortieren): Ist $k$ die Anzahl der Kanten von G mit positivem Gewicht, so numeriere diese $k$ Kanten, so dass gilt $ c(e_1) \geq c(e_2) \geq \ldots \geq c(e_k) > 0$.\\
+\item Setze $W := \emptyset $ .\\
+\item FOR $i=1$ TO $k$ DO: \\
+\-\hspace{1cm} Falls $W \cup \{ e_i\}$ keinen Kreis enth\"alt, setze $W:=W \cup \{ e_i\} $ \\
+\item Gib $W$ aus.
+\end{enumerate}
 
+\textbf{Induktionsannahme}: \\
+$W_{i-1}$ ist ein maximaler Wald, der die ersten $i-1$ vom Greedy-Max Algorithmus bestimmte Kanten $e_1, ..., e_{i-1}$ enth\"alt.\\
+\textbf{Induktionsschritt}: $i-1 \rightarrow i$: \\
+Zu seigen, es gibt einen maximalen Wald $W_i$, der die vom Algorithmus ausgew\"ahlten Kanten $e_j \forall j\geq i$ enth\"alt.\\
+Der Algorithmus w\"ahlt die im i-ten Schritt die Kante $e_i$ aus, f\"ur diese Kante muss gelten: \\
+$c(e_1) \geq c(e_K) \forall \notin W_{i-1}$, so dass $W_{i-1} \cup \{ e_K\}$ keinen Kreis enth\"alt.\\
+Da $W_{i-1}$ einen Wald ist, insbesondere $\forall e_K \in W_{i-1} \setminus \{ e_1, ..., e_{i-1}\}$, d.h. f\"ur alle Kanten in $W_{i-1}$, die der Greedy Algorithmus noch nicht gew\"ahlt hat.\\
+F\"uge nun diese Kante $e_i$ zu $W_{i-1}$ hinzu. Dann entsteht in $W_{i-1}$ ein Kreis, da $W_{i-1}$ bereits ein maximaler Wald war und durch hinzuf\"ugen einer Kante genau ein Kreis entsteht.\\
+Entfernte aus diesem Kreis die Kante $K$, wobei $k \neq e_j \forall j \geq i$ ist. Diese Kante existiert in $W_{i-1}$, da der Greedy Max-Algorithmus sonst einen Kreis fabriziert h\"atte.\\
+D.h. $W_i := ( W_{i-1} \setminus \{ k\} ) \cup \{ e_i\} $ ist ein Wald, der $e_j \forall j \geq i$ enth\"alt und ausserdem maximal ist, da $c(e_i) \geq c(k)$.
 \end{document}
