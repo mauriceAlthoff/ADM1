@@ -17,6 +17,56 @@ Serie 4}
 
 \maketitle
 
+\section{Aufgabe 15}
+
+Sei $D = (V,A)$ ein Digraph mit $n \ge 2$ Knoten.\\
+Zu zeigen: $(1) \Rightarrow (2)$\\
+Wir nehmen an, dass D eine Arboreszenz ist(A1) und zerlegen die Aussage in zwei Teilbeweise.\\
+\\
+Zu zeigen(Z1): D hat $n-1$ Bögen.\\ 
+Wir beweisen die Aussage per Widerspruch und nehmen an, dass D keine $n-1$ Bögen besitzt(A2).\\
+Somit gibt es zwei Fälle:\\
+\\
+Fall 1: $|A| < n - 1$\\
+\\
+Da $D$ genau $n$ Knoten besitzt und es nur maximal $n - 2$ Bögen geben kann, ex. ein Knoten $u \in V$, der auf keinem Weg w mit maximaler Länge enthalten ist. Dies gilt, da ein Weg über alle Knoten mindestens $n - 1$ Kanten hätte. Daraus folgt, dass $\{uv,vu\} \cap A = \emptyset$ für alle $v \in V / \{u\}$ und somit kann $D$ kein zusammenhängender Graph bzw. ein Baum, sowie keine Arboreszenz sein. \textbf{Widerspruch!}\\
+\\
+Fall 2: $|A| > n - 1$\\
+\\
+Da $D$ genau $n$ Knoten besitzt und es mindestens $n$ Bögen gibt. Nehmen wir an, dass aus allen Knoten eine Kante ausgehen, dann  für einen beliebigen Knoten $v \in V$ gelten, dass n
+\\
+Zu zeigen(Z2): D ist quasi-stark zusammenhängend.\\
+
+Zu ze
+\\
+Zu zeigen: $(2) \Rightarrow (3)$\\
+Annahme(A1): $D$ hat $n-1$ Bögen und ist quasi-stark zusammenhängend. \\
+Zu zeigen: D enthält einen Knoten $r$, so dass es in $D$ für jeden Knoten $v$ genau einen gerichteten $r,v$-Weg gibt.
+Da A1 gilt, folgt dass für jedes Paar aus Knoten $u,v \in V$ ein Knoten w ex. , so dass es von $w$ einen gerichteten Weg zu $u$ und einen gerichteten Weg zu $v$ gibt. Setzen wir nun $r = w$, so enthält $D$ einen Knoten $r$, so dass es einen gerichteten $(r,u)$-Weg und einen gerichteten $(r,v)$-Weg in $D$ gibt. Da $u,v$ ein beliebes Paar aus Knoten ist, folgt dass für jeden Knoten $v'$ ein gerichteter $(r,v')$- Weg existiert.\\
+Zusätzlich gilt, dass $r$ eine Kante, bzw. einen gerichteten Weg zu allen anderen $n-1$ Knoten besitzt. Das heißt es muss min. $n-1$ Kanten geben, die $r$ mit den anderen Knoten $v$ direkt oder über einen Weg verbinden, da sonst kein $(r,v)$-Weg existieren würde. Da per A1 gilt, dass $D$ genau $n - 1$ Knoten hat, kann nur genau ein gerichteter Weg existieren. DIes ist der Fall, da für jeden neuen Weg eine zusätzlich Kante benötigt werden würde, also mindestens $n$ viele Kanten. Dies wäre jedoch ein Widerspruch zur Annahme A1.
+Somit gilt die Aussage.\\
+\\
+Zu zeigen: $(3) \Rightarrow (4)$\\
+\\
+Annahme(A1): $D$enthält einen Knoten $r$, so dass es in $D$ für jeden anderen Knoten $v$ genau ein gerichteten $(r,v)$-Weg gibt.\\
+Zu zeigen(Z1): $D$ ist quasi-stark zusammenhängend.\\
+Da A1 gilt, gibt es auch für ein beliebiges Paar von Knoten $u,v \in V$ einen gerichteten $(r,u)$-Weg und einen gerichteten $(r,v)$-Weg. Somit ist $D$ nach Definition quasi-zusammenhängend. 
+Zu zeigen(Z2): $D$ besitzt einen Knoten $r$ mit $\delta^-(r) = 0$ und erfüllt $\delta^-(v) = 1$ für alle $v \in V \\ \{r\}$.\\
+Da A1 gilt, muss $r$ der Knoten, der zu allen anderen Knoten $v \in V$ einen gerichteten $(r,v)$-Weg besitzt, mit $\delta^-(r) = 0$ sein. Hätte $r$ nämlich einen Innengrad größer $0$, so gäbe es folgendermaßen einen Kreis in $D$(denn es ex. ein gerichteter Weg von $r$ zu allen anderen Knoten $v$). Da deswegen auch mehr als ein gerichteten Weg von $r$ zu den anderen Knoten $v$ existieren kann, indem man mehrmals über den Knoten $r$ läuft, entsteht ein Widerspruch zur Annahme A1.\\
+Zusätzlich müssen alle anderen Knoten $v \in V \\ \{r\}$ den Innengrad 1 besitzen, da es nur genau einen gerichteten $(r,v)$-Weg gibt. Hätte ein Knoten $v' \in V \\ \{r\}$ einen Innengrad von 0, so gäbe es keinen gerichteten $(r,v')$-Weg. Hätte $v'$ einen Innengrad größer 1, so gäbe es zwei verschiedene $(r,v')$-Wege, da $r$ einen gerichteten Weg zu allen anderen Knoten besitzt. Beide Fälle stehen im Widerspruch zur Annahme.
+Somit gilt die Aussage.\\
+\\
+Zu zeigen: $(4) \Rightarrow (5)$\\
+Annahme(A1): $D$ ist quasi-stark zusammenhängend, besitzt einen Knoten $r$ mit $\delta^-(r) = 0$ und erfüllt $\delta^-(v) = 1$ für alle $v \in V \\ \{r\}$.\\
+Zu zeigen: D enthält keinen Kreis, einen Knoten $r$ mit $\delta^-(r) = 0$ und erfüllt $\delta^-(v) = 1$ für alle $v \in V \\ \{r\}$.\\
+\\
+Da A1 gilt, gibt es für zwei bel. Paare von Knoten $u,v \in V$, einen Knoten $r$, so dass es einen gerichteten $(r,u)$-Weg und einen gerichteten $(r,v)$- Weg gibt. $r$ muss dabei den Innengrad 0 besitzen, da sonst ein bel. Knoten $v' \in V$ den Innengrad 0 hätte, aber dann kein gerichteter $(r,v')$-Weg existieren würde. Dies würde der Annahme widersprechen. Somit müssen alle Knoten $v$ den Innengrad 1 besitzen. 
+Zusätzlich gilt, dass $r$ kein Koten einer Kante in einem Kreis sein kann, da sonst $r$ einen Innengrad größer 0 hätte. Für alle anderen Knoten $v$ gilt, dass es einen gerichteten $(r,v)$-Weg gibt und somit diese Knoten nicht Teil einer Kanten in einem Kreis wären. Dies ist der Fall da diese Knoten sonst einen Innengrad größer 1 hätten(da der gerichtete $(r,v)$-Weg bereits eine eingehende Kante in $v$ erfordert). Somit kann kein Knoten Teil einer Kante in einem Kreis sein und folgendermaßen kann kein Kreis existieren. Somit gilt die Aussage.\\ 
+\\
+Zu zeigen: $(5) \Rightarrow (1)$\\
+\\
+Da $D$ genau $n$ Knoten besitzt und damit $n - 1$ viele Knoten enthält, die einen Innengrad von 1 besitzen, muss $D$ genau $n - 1$ Kanten besitzen. Hätte $D$ mehr Kanten, so würde $deg^-(r) > 0$ oder $deg^-(v) > 1$ für einen Knoten $v \in V \\ \{r\}$. Hätte $D$ weniger Kanten als $n - 1$ Kanten, so würde $deg^-(v)=0$ für einen Knoten $v \in V \\ \{r\}$ gelten. Da $D$ kreisfrei ist muss es somit einen Weg der Länge $n - 1$ geben, der über alle Knoten $v' \in V$ läuft(da sonst ein Knoten doppelt im Weg vorkommen und $D$ somit einen Kreis enthalten würde). Daraus folgt, dass D zusammenhängend sein muss. Aus dieser Folgerung, der Annahme, dass $D$ kreisfrei ist und für alle Knoten $v' \in V$ $deg^-(v') \le 1$ gilt, folgt per Definition, dass $D$ eine Arboreszenz ist. 
+
 \section{Aufgabe 16}
 
 Eingabe: ein Graph $ G=(V,E), c \in E $ mit Kantengewichten $c(W) \forall e \in E$ \\

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  13 NOV 2014 14:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  13 NOV 2014 23:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -722,36 +722,34 @@ File: tikzlibraryarrows.code.tex 2008/01/09 v2.10 (rcs-revision 1.1)
 File: pgflibraryarrows.code.tex 2008/10/27 v2.10 (rcs-revision 1.9)
 \arrowsize=\dimen158
 ))
-\c@ctra=\count121
-
-No file Serie4.aux.
+(./Serie4.aux)
 \openout1 = `Serie4.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
-LaTeX Font Info:    ... okay on input line 45.
-ABD: EveryShipout initializing macros
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+ ABD: EveryShipout initializing macros
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
+\scratchcounter=\count121
 \scratchdimen=\dimen159
 \scratchbox=\box38
-\nofMPsegments=\count123
-\nofMParguments=\count124
+\nofMPsegments=\count122
+\nofMParguments=\count123
 \everyMPshowfont=\toks38
-\MPscratchCnt=\count125
+\MPscratchCnt=\count124
 \MPscratchDim=\dimen160
-\MPnumerator=\count126
-\makeMPintoPDFobject=\count127
+\MPnumerator=\count125
+\makeMPintoPDFobject=\count126
 \everyMPtoPDFconversion=\toks39
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -801,45 +799,117 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Try loading font information for T1+cmss on input line 48.
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 48.
+LaTeX Font Info:    Try loading font information for U+msa on input line 19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 48.
+LaTeX Font Info:    Try loading font information for U+msb on input line 19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+stmry on input line 48.
+LaTeX Font Info:    Try loading font information for U+stmry on input line 19.
 
-(/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd) [1
+(/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--55
+
+ []
+
+[1
 
 
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Serie4.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Underfull \hbox (badness 10000) in paragraph at lines 58--60
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 61--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--65
+
+ []
+
+[2] [3] (./Serie4.aux) ) 
 Here is how much of TeX's memory you used:
- 13488 strings out of 493304
- 240791 string characters out of 6139871
- 329988 words of memory out of 5000000
- 16640 multiletter control sequences out of 15000+600000
- 10676 words of font info for 33 fonts, out of 8000000 for 9000
+ 13475 strings out of 493304
+ 240806 string characters out of 6139871
+ 337657 words of memory out of 5000000
+ 16621 multiletter control sequences out of 15000+600000
+ 13073 words of font info for 39 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 65i,7n,71p,419b,221s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/shar
-e/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/fonts/type1/
-public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
-1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx2074.pfb>
-Output written on Serie4.pdf (1 page, 33006 bytes).
+ 65i,8n,71p,807b,221s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.
+enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf/fonts/type1/public/
+cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pf
+b></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/
+fonts/type1/public/cm-super/sfsx1440.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfsx2074.pfb>
+Output written on Serie4.pdf (3 pages, 142607 bytes).
 PDF statistics:
- 24 PDF objects out of 1000 (max. 8388607)
- 17 compressed objects within 1 object stream
+ 62 PDF objects out of 1000 (max. 8388607)
+ 45 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
