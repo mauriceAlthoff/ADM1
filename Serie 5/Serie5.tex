@@ -20,4 +20,37 @@ Serie 5}
 
 \section{Aufgabe 18}
 
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,
+  thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (9) {9};
+  \node[main node] (10) [right of=9] {10};
+  \node[main node] (11) [right of=10] {11};
+  \node[main node] (12) [right of=11] {12};
+  \node[main node] (13) [right of=12] {13};
+  \node[main node] (14) [right of=13] {14};
+  \node[main node] (15) [right of=14] {15};
+  \node[main node] (16) [right of=15] {16};
+  \node[main node] (17) [right of=16] {17};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (10) edge node {0} (9)
+    (10) edge node {0} (9)
+    (11) edge node {0} (10)
+    (12) edge node {0} (11)
+    (13) edge node {0} (12)
+    (14) edge node {0} (13)
+    (15) edge node {0} (14)
+    (16) edge node {0} (15)
+    (17) edge node {0} (16)
+
+    (9) edge [bend right] node {30} (13)
+    (9) edge [bend left] node {18} (11)
+    (12) edge [bend left] node {21} (15)
+    (12) edge [bend left] node {38} (17)
+    (14) edge [bend right] node {20} (17)
+    (13) edge [bend right] node {22} (16)
+    (15) edge [bend left] node {9} (17);
+\end{tikzpicture}
+
 \end{document}
