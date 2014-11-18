@@ -20,6 +20,8 @@ Serie 5}
 
 \section{Aufgabe 18}
 
+Wir modellieren die Stunden als Knoten und die Kosten als Kanten, um einen zusammenh\"angenden Graphen zu erhalten m\"ussen wir Kanten mit keinen Kosten einf\"uhgen die von jeder Stunde auf die vorherige Stunde zeigen. Dadurch erhalten wir diesen Digraph:
+
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,
   thick,main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
 
@@ -53,4 +55,25 @@ Serie 5}
     (15) edge [bend left] node {9} (17);
 \end{tikzpicture}
 
+Um den k\"urzesten Weg zu ermitteln wird Dijkstra-Algorithmus aus der Vorlesung verwendet:
+
+\begin{center}
+\resizebox{\textwidth}{!}{%
+  \begin{tabular}{| c | l | r | c | c | c | c | c | c | c | c | c | c  l |}
+    \hline
+     Step & $\lnot$Visit                 &      Visit                     & C  & 9              & 10             & 11             & 12             & 13             & 14             & 15             & 16             & 17             &\\ \hline
+     0 & $\{ 9,10,11,12,13,14,15,16,17\} $ & $\{ \emptyset \} $           &    & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & Init\\ \hline
+     1 & $\{ 10,11,12,13,14,15,16,17\}   $ & $\{ 9 \} $                   & 9  &                & $(\infty , -)$ & $(18 , 9)$     & $(\infty , -)$ & $(30 , 9)$     & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ &\\ \hline
+     2 & $\{ 10,12,13,14,15,16,17\}      $ & $\{ 9,11 \} $                & 11 &                & $(18 , 10)$    &                & $(\infty , -)$ & $(30 , 9)$     & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ &\\ \hline
+     3 & $\{ 12,13,14,15,16,17\}         $ & $\{ 9,11,10 \} $             & 10 &                &                &                & $(\infty , -)$ & $(30 , 9)$     & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & Dead End\\ \hline
+     4 & $\{ 12,14,15,16,17\}            $ & $\{ 9,11,10,13 \} $          & 13 &                &                &                & $(30 , 13)$    &                & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ & $(\infty , -)$ &\\ \hline
+     5 & $\{ 14,15,16,17\}               $ & $\{ 9,11,10,13,12 \} $       & 12 &                &                &                &                &                & $(\infty , -)$ & $(51 , 20)$    & $(\infty , -)$ & $(68 , 12)   $ &\\ \hline
+     6 & $\{ 14,16,17\}                  $ & $\{ 9,11,10,13,12,15 \} $    & 15 &                &                &                &                &                & $(51 , 13)$    &                & $(\infty , -)$ & $(60 , 13)$    &\\ \hline
+     7 & $\{ 16,17\}                     $ & $\{ 9,11,10,13,12,15,14 \} $ & 14 &                &                &                &                &                &                &                & $(\infty , -)$ & $(60 , 13)$    & Dead End\\ \hline
+  \end{tabular}}
+\end{center}
+
+Ergebnis:\\
+
+Die k\"urzeste Strecke ist $\{9-13,12-15,15-17\} $ mit kosten von 60.
 \end{document}
