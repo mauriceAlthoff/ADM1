@@ -77,6 +77,32 @@ Um den k\"urzesten Weg zu ermitteln wird Dijkstra-Algorithmus aus der Vorlesung 
 Ergebnis:\\
 
 Die k\"urzeste Strecke ist $\{9-13,12-15,15-17\} $ mit kosten von 60.
+\section{Aufgabe 19}
+Sei $D = (V,A)$ ein Digraph mit Gewichten $c_a \in \mathbb{R}$, $c_a \ge$ 0 f\"ur jeden Bogen $a \in A$.\\
+Sei $s \in V$ und $A_T die Menge der B"ogen in T$.\\
+\\
+Zu zeigen: $T$ ist ein K\"urzester-Wege-Baum von $s$ $\Leftrightarrow$ $\forall (u,v) \in A \setminus A_T. d_T(s,u) + c(u,v) \ge d_T(s,v)$
+Wir beweisen die beiden Implikationen.\\
+Zu zeigen(Z1): $T$ ist ein Kürzester-Wege-Baum von $s$ $\Rightarrow$ $\forall (u,v) \in A \setminus A_T. d_T(s,u) + c(u,v) \ge d_T(s,v)$\\
+Wir beweisen Z1 per Kontraposition.
+\begin{align*}
+	&\exists (u,v) \in A \setminus A_T: d_T (s,u) + c(u,v) < d_T (s,v)\\
+	\xRightarrow{} &Es\ ex.\ ein\ (s,v)-Weg\ w = (s,...,u,(u,v),v)\ in\ D,\ so\ dass\\
+	&w\ ein\ k"urzerer\ Weg\ ist\ als\ der\ (s,v)-Weg\ in\ T\\
+	\xRightarrow{} &T\ enth"alt\ nicht\ den\ k"urzesten\ (s,v)-Weg\\
+	\xRightarrow{} &T\ ist\ kein\ K"urzester-Wege-Baum\ von\ s\\
+\end{align*}
+Da wir die Kontraposition gezeigt haben, gilt auch Z1.\\
+\\
+Zu zeigen: $\forall (u,v) \in A \setminus A_T. d_T(s,u) + c(u,v) \ge d_T(s,v)$ $\Rightarrow$ $T$ ist ein Kürzester-Wege-Baum von $s$\\ 
+\begin{align*}
+	&\forall (u,v) \in A \setminus A_T. d_T (s,u) + c(u,v) \ge d_T (s,v)\\
+	\xRightarrow{} &Alle\ (s,v)-Wege\ w = (s,...,u,(u,v),v)\ in\ D\ haben\ mindestens\\
+	&die\ gleiche\ L"ange\ wie\ der\ (s,v)-Weg\ in\ T\\
+	\xRightarrow{} &Der\ (s,v)-Weg\ in\ T\ ist\ der\ k"urzeste\ Weg\ in\ D \\
+	\xRightarrow{} &T\ ist\ ein\ K"urzester-Wege-Baum\ von\ s\\
+\end{align*}
+Da wir die beiden Implikationen bewiesen haben, gilt die ursprüngliche Aussage.
 \section{Aufgabe 20}
 \begin{align}
 	&c'(v,w) = c(v,w) - f(v,t) + f(w,t) | + f(v,t)\\
