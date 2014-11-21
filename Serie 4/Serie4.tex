@@ -7,6 +7,7 @@
 \usepackage{amsthm,amssymb,amsmath,ifthen,stmaryrd}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\usepackage{listings}
 
 %opening
 \title{Einführung in die lineare und kombinatorische Optimierung\\
@@ -16,6 +17,29 @@ Serie 4}
 \begin{document}
 
 \maketitle
+
+\section{Aufgabe13}
+
+\textbf{Tiefensuche:}\\
+
+\begin{lstlisting}
+DFS(node, goal)
+{
+  if (node == goal) {
+    return node;
+  } else
+  {
+    stack := expand (node)
+    while (stack is not empty)
+    {
+      node' := pop(stack);
+      DFS(node', goal);
+    }
+  }
+}
+\end{lstlisting}
+
+In der Tiefensuche werden in jedem Iterationsschritt alle benachbarten Knoten besucht und da in einer Clique alle Knoten benachbart sind werden diese in einem Weg von einem Blatt zur Wurzel gespeichert.
 
 \section{Aufgabe 15}
 
