@@ -1,4 +1,4 @@
-\documentclass[a4paper,10pt,german]{scrartcl}
+\documentclass[a4paper,12pt,german]{scrartcl}
 %\usepackage{mathtools}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -9,6 +9,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usepackage{listings}
+\renewcommand{\labelenumi}{\alph{enumi})}
 
 %opening
 \title{Einführung in die lineare und kombinatorische Optimierung\\
@@ -21,6 +22,61 @@ Serie 6}
 
 \section*{Aufgabe 20}
 \section*{Aufgabe 21}
+  \begin{enumerate}
+    \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
+    \begin{center}
+    \begin{tikzpicture}[every node/.style={circle},node distance=40pt]
+    \node[draw] (1) {$s$};
+    \node[draw] (2)[right of=1] {$u$} edge[<-]node[above]{1} (1);
+    \node[draw] (3)[right of=2] {$v$} edge[->,bend left]node[below]{1} (2) edge[<-,bend right]node[above]{1} (2);
+    \node[draw] (4)[right of=3] {$t$} edge[<-]node[above]{1} (3);
+    \node[draw] (5)[below of=2] {$x$} edge[<-]node[left]{1} (2);
+    \node[draw] (6)[below of=3] {$y$} edge[->]node[right]{1} (3)edge[<-]node[below]{1}(5);
+    \end{tikzpicture}    
+    \end{center}
+    Hier können wir alle Bögen saturieren (d.h. $x_a=c_a\,\forall a\in A$) und erhalten einen maximalen Fluss. Insbesondere ist aber $x_{uv}=x_{vu}=1$.
+
+  \item Diese Aussage ist wahr. Seien ein Netzwerk $((V,A),c,s,t)$ und ein maximaler Fluss $x_a,a\in A$ gegeben. Seien $u,v\in V$ mit $x_{uv}\neq0\neq x_{vu}$. O.B.d.A. sei $x_{uv}\geq x_{vu}$ (sonst vertausche $u$ und $v$). Dann ist auch $x'_{a},a\in A$ ein maximaler Fluss mit $x'_a=x_a\,\forall a\in A\setminus\{(u,v),(v,u)\}$ und $x'_{uv}=x_{uv}-x_{vu},x'_{v,u}=0$.\\
+  Man sieht, dass für jeden Knoten $v$ gilt: $\sum\limits_{a\in\delta^+(v)}x'_a-\sum\limits_{a\in\delta^-(v)}x'_a=\sum\limits_{a\in\delta^+(v)}x_a-\sum\limits_{a\in\delta^-(v)}x_a$. Dies gilt, da sich für alle Knoten außer $u$ und $v$ nichts ändert und für diese beiden sich beide Summen um den gleichen Betrag ändern. Außerdem bleibt der Fluss auch maximal, da sich die Bilanz auch für $s$ nicht geändert hat. Dieses Verfahren kann man sooft wiederholen, bis die geforderte Bedingung für alle Knotenpaare erfüllt ist, da zwei solche Veränderungen sich gegenseitig nicht beeinflussen.
+  \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
+    \begin{center}
+    \begin{tikzpicture}[every node/.style={circle},node distance=60pt]
+    \node[draw] (1) {$s$};
+    \node[draw] (2)[above right of=1] {$u$} edge[<-]node[above]{9} (1);
+    \node[draw] (3)[right of=2] {$v$} edge[<-]node[above]{5} (2);
+    \node[draw] (4)[below right of=3] {$t$} edge[<-]node[right]{13} (3);
+    \node[draw] (5)[below right of=1] {$x$} edge[<-]node[below]{11} (1) edge[->,bend left]node[above]{8}(3);
+    \node[draw] (6)[right of=5] {$y$} edge[->]node[right]{7} (4)edge[<-]node[below]{3}(5)
+    edge[<-,bend left]node[right]{4}(2);
+    \end{tikzpicture}
+    \end{center}
+    Hier sind alle Kapazitäten paarweise verschieden, aber sowohl $B:=\delta(\{s\})$ als auch $C:=\delta(\{s,u,x\})$ minimale $(s,t)$-Schnitte mit $c(B)=c(C)=20$. Minimal sind sie, denn es existiert ein Fluss $f_a,a\in A$ mit $f_a=c_a\,\forall a\in A$ und Wert 20. Im Übrigen ist hier sogar jeder $(s,t)$-Schnitt minimal.
+    
+  \item Diese Aussage ist wahr. Sei $B\subseteq$ ein beliebiger $(s,t)$-Schnitt und $c'_a=\lambda c_a\,\forall a\in A$. Dann ist nach der Veränderung $c'(B)=\sum\limits_{a\in B}c'_a=\sum\limits_{a\in B}\lambda c_a=\lambda\sum\limits_{a\in B}c_a$. Nun ist klar, dass ein minimaler Schnitt auch minimal bleibt, da für beliebige $(s,t)$-Schnitte $S_1,S_2$ mit $c(S_1)\leq c(S_2)$ gilt: $c'(S_1)\leq c'(S_1)\iff \lambda c(S_1)\leq \lambda c(S_2)\stackrel{\lambda>0}{\iff}c(S_1)\leq c(S_2)$.
+  \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
+    \begin{center}
+    \begin{tikzpicture}[every node/.style={circle},node distance=60pt]
+    \node[draw] (1) {$s$};
+    \node[draw] (2)[above right of=1] {$u$} edge[<-]node[above left]{1} (1);
+    \node[draw] (3)[below right of=2] {$v$} edge[<-]node[above right]{2} (2);
+    \node[draw] (4)[right of=3] {$t$} edge[<-]node[above]{3} (3);
+    \node[draw] (5)[below right of=1] {$x$} edge[<-]node[below left]{1} (1) edge[->]node[below right]{2}(3);
+    \end{tikzpicture}
+    \end{center}
+    Hier wäre $B:=\delta(s)$ ein minimaler $(s,t)$-Schnitt mit $c(B)=2$. Erhöhen wir aber jede Kapazität um 2, so erhalten wir folgendes Netzwerk:
+        \begin{center}
+    \begin{tikzpicture}[every node/.style={circle},node distance=60pt]
+    \node[draw] (1) {$s$};
+    \node[draw] (2)[above right of=1] {$u$} edge[<-]node[above left]{3} (1);
+    \node[draw] (3)[below right of=2] {$v$} edge[<-]node[above right]{4} (2);
+    \node[draw] (4)[right of=3] {$t$} edge[<-]node[above]{5} (3);
+    \node[draw] (5)[below right of=1] {$x$} edge[<-]node[below left]{3} (1) edge[->]node[below right]{4}(3);
+    \end{tikzpicture}
+    \end{center}
+    Hier ist nun $\delta(s)$ kein minimaler $(s,t)$-Schnitt mehr, denn $c(\delta(s))=6$, \linebreak aber $c(\delta(\{s,u,x,v\}))=5$.\\
+    Das Problem bei dieser Veränderung ist, dass  ein $(s,t)$-Schnitt in der Anzahl der beteiligten Kanten skaliert wird.
+  \end{enumerate}  
+  
 \section*{Aufgabe 22}
 \section*{Aufgabe 23}
 
