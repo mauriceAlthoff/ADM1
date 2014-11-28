@@ -35,8 +35,12 @@ Dann ist \begin{align*}
 &=\sum\limits_{i\in\{i_1,\dots,i_p\}}x_{uy_i}+ \sum\limits_{j\in\{j_1,\dots,j_q\}}x_{uw_j}\\
 &=\sum\limits_{z\in\delta^+(u)}x_{uz}
 \end{align*}
-Somit ist der Fluss zulässig.
-\section*{Aufgabe 21}
+Somit ist der Fluss zulässig.\\
+"$\Rightarrow$":\\
+Wir geben einen Algorithmus an, der sukzessive die Pfade und Kreise mit entsprechenden $\lambda_i$ resp. $\mu_i$ findet.\\
+Wir beginnen mit einer beliebigen Kante $su$ mit $x_su>0$. Hier gehen wir solange  über Kanten mit Fluss gröer 0 weiter, bis wir entweder $t$ erreichen oder einen Kreis schließen. Im ersten Fall wählen wir $\lambda$ als das Minimum des Flusses auf allen beteiligten Kanten, im zweiten Fall wählen wir $\mu$ als Minimum des Flusses auf den am Kreis beteiligten Kanten. Auf diesen (also ganzer Pfad oder gefundenem Kreis) verringern wir den Fluss um $\lambda$ resp. $\mu$ und beginnen den Algorithmus von vorn. Dieser terminiert weil jedes Mal auf mindestens einer Kante der Fluss 0 wird. Sollte nun oder von Beginn an keine von $s$ ausgehende Kante einen Fluss $>0$ haben, so ist der Fluss überall $0$ oder aber zumindest $t$ hat keine eingehende Kante mehr mit Fluss $>0$ die nicht auf einem Kreis liegt, da die berechneten Flüsse zulässig bleiben und $\sum\limits_{v\in\delta^+(s)}x_{sv}-\sum\limits_{v\in\delta^-(s)}x_{vs} =\sum\limits_{v\in\delta^-(t)}x_{vt}-\sum\limits_{v\in\delta^+(t)}x_{tv}$.
+Somit besteht wegen des Flusserhalts der aktuelle Fluss nur noch aus einer Vereinigung von Kreisen. Diese finden wir so ähnlich wie bisher, nur dass wir jetzt mit einem beliebigen Knoten $u$ mit $\sum\limits_{v\in\delta^+(su)}x_{uv}>0$ beginnen.
+\section*{Aufgabe 21} 
 
   \begin{enumerate}
     \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
@@ -65,7 +69,6 @@ Somit ist der Fluss zulässig.
     \node[draw] (6)[right of=5] {$y$} edge[->]node[right]{7} (4)edge[<-]node[below]{3}(5)
     edge[<-,bend left]node[right]{4}(2);
     \end{tikzpicture}
-      \stepcounter{page}
     \end{center}
     Hier sind alle Kapazitäten paarweise verschieden, aber sowohl $B:=\delta^+(\{s\})$ als auch $C:=\delta^+(\{s,u,x\})$ minimale $(s,t)$-Schnitte mit $c(B)=c(C)=20$. Minimal sind sie, denn es existiert ein Fluss $f_a,a\in A$ mit $f_a=c_a\,\forall a\in A$ und Wert 20. Im Übrigen ist hier sogar jeder $(s,t)$-Schnitt minimal.
     
