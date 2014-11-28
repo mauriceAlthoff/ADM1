@@ -22,7 +22,22 @@ Serie 6}
 \maketitle
 
 \section*{Aufgabe 20}
+Zeigen wir zunächst "$\Leftarrow$":\\
+Zu prüfen ist, ob der so definierte Fluss $x$ zulässig ist.\\
+Per Voraussetzung gilt: $\forall uv\in A:0\leq x_{uv}\leq c_{uv}.\checkmark$\\
+Betrachte beliebigen Knoten $u\in V\setminus \{s,t\}$:\\
+Dieser liege auf den Wegen $P_{i_1},\dots,P_{i_p}$ und den Kreisen $C_{j_1},\dots C_{j_q}$.
+Seien $x_{i_1},\dots,P_{i_x}$ seine Vorgänger und $y_{i_1},\dots,y_{i_p}$ seine Nachfolger auf den Pfaden sowie $v_{j_1},\dots v_{j_q}$ seine Vorgänger und $w_{j_1},\dots w_{j_q}$ seine Nachfolger auf den Kreisen.\\
+Dann ist \begin{align*}
+\sum\limits_{z\in\delta^-(u)}x_{zu}
+&=\sum\limits_{i\in\{i_1,\dots,i_p\}}x_{x_iu}+ \sum\limits_{j\in\{j_1,\dots,j_q\}}x_{v_ju}\\
+&=\sum\limits_{i\in\{i_1,\dots,i_p\}}\lambda_i+ \sum\limits_{j\in\{j_1,\dots,j_q\}}\mu_j\\
+&=\sum\limits_{i\in\{i_1,\dots,i_p\}}x_{uy_i}+ \sum\limits_{j\in\{j_1,\dots,j_q\}}x_{uw_j}\\
+&=\sum\limits_{z\in\delta^+(u)}x_{uz}
+\end{align*}
+Somit ist der Fluss zulässig.
 \section*{Aufgabe 21}
+
   \begin{enumerate}
     \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
     \begin{center}
@@ -50,6 +65,7 @@ Serie 6}
     \node[draw] (6)[right of=5] {$y$} edge[->]node[right]{7} (4)edge[<-]node[below]{3}(5)
     edge[<-,bend left]node[right]{4}(2);
     \end{tikzpicture}
+      \stepcounter{page}
     \end{center}
     Hier sind alle Kapazitäten paarweise verschieden, aber sowohl $B:=\delta^+(\{s\})$ als auch $C:=\delta^+(\{s,u,x\})$ minimale $(s,t)$-Schnitte mit $c(B)=c(C)=20$. Minimal sind sie, denn es existiert ein Fluss $f_a,a\in A$ mit $f_a=c_a\,\forall a\in A$ und Wert 20. Im Übrigen ist hier sogar jeder $(s,t)$-Schnitt minimal.
     
@@ -77,8 +93,7 @@ Serie 6}
     Hier ist nun $\delta^+(s)$ kein minimaler $(s,t)$-Schnitt mehr, denn $c(\delta^+(s))=6$, \linebreak aber $c(\delta^+(\{s,u,x,v\}))=5$.\\
     Das Problem bei dieser Veränderung ist, dass  ein $(s,t)$-Schnitt in der Anzahl der beteiligten Kanten skaliert wird.
   \end{enumerate}  
-  
-\section*{Aufgabe 22}
+
 \section*{Aufgabe 23}
 Im folgenden nennen wir ein kardinalitätsmaximales Matching ein \emph{größtes} Matching, und einen maximalen, zulässigen $(s,t)$-Fluss einen \emph{größten} Fluss.\\
 Zunächst zeigen wir, dass der Wert eines größten Matchings dem eines größten Flusses entspricht.\\
@@ -107,4 +122,5 @@ if 0<$x_{uv}$
   end
 \end{lstlisting}
 Dieser Algorithmus verändert den Wert des ursprünglichen Flusses nicht, da für jeden solchen Bogen $uv$ entweder $su$ oder $vt$ (oder beide) bereits saturiert war, sonst könnte man ja den Fluss vergrößern. Bauen wir uns also einen Schnitt $S$ auf, der $su$ enthält falls dieser Bogen saturiert war oder im anderen Falle $vt$, so erhalten wir einen minimalen Schnitt, der sowohl durch den ursprünglichen Fluss als auch durch den veränderten saturiert wird.
+\section*{Aufgabe 22}
 \end{document} 
