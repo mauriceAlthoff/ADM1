@@ -1,5 +1,6 @@
 \documentclass[a4paper,12pt,german]{scrartcl}
 %\usepackage{mathtools}
+\usepackage{listings}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -50,7 +51,7 @@ Serie 6}
     edge[<-,bend left]node[right]{4}(2);
     \end{tikzpicture}
     \end{center}
-    Hier sind alle Kapazitäten paarweise verschieden, aber sowohl $B:=\delta(\{s\})$ als auch $C:=\delta(\{s,u,x\})$ minimale $(s,t)$-Schnitte mit $c(B)=c(C)=20$. Minimal sind sie, denn es existiert ein Fluss $f_a,a\in A$ mit $f_a=c_a\,\forall a\in A$ und Wert 20. Im Übrigen ist hier sogar jeder $(s,t)$-Schnitt minimal.
+    Hier sind alle Kapazitäten paarweise verschieden, aber sowohl $B:=\delta^+(\{s\})$ als auch $C:=\delta^+(\{s,u,x\})$ minimale $(s,t)$-Schnitte mit $c(B)=c(C)=20$. Minimal sind sie, denn es existiert ein Fluss $f_a,a\in A$ mit $f_a=c_a\,\forall a\in A$ und Wert 20. Im Übrigen ist hier sogar jeder $(s,t)$-Schnitt minimal.
     
   \item Diese Aussage ist wahr. Sei $B\subseteq$ ein beliebiger $(s,t)$-Schnitt und $c'_a=\lambda c_a\,\forall a\in A$. Dann ist nach der Veränderung $c'(B)=\sum\limits_{a\in B}c'_a=\sum\limits_{a\in B}\lambda c_a=\lambda\sum\limits_{a\in B}c_a$. Nun ist klar, dass ein minimaler Schnitt auch minimal bleibt, da für beliebige $(s,t)$-Schnitte $S_1,S_2$ mit $c(S_1)\leq c(S_2)$ gilt: $c'(S_1)\leq c'(S_1)\iff \lambda c(S_1)\leq \lambda c(S_2)\stackrel{\lambda>0}{\iff}c(S_1)\leq c(S_2)$.
   \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
@@ -63,7 +64,7 @@ Serie 6}
     \node[draw] (5)[below right of=1] {$x$} edge[<-]node[below left]{1} (1) edge[->]node[below right]{2}(3);
     \end{tikzpicture}
     \end{center}
-    Hier wäre $B:=\delta(s)$ ein minimaler $(s,t)$-Schnitt mit $c(B)=2$. Erhöhen wir aber jede Kapazität um 2, so erhalten wir folgendes Netzwerk:
+    Hier wäre $B:=\delta^+(s)$ ein minimaler $(s,t)$-Schnitt mit $c(B)=2$. Erhöhen wir aber jede Kapazität um 2, so erhalten wir folgendes Netzwerk:
         \begin{center}
     \begin{tikzpicture}[every node/.style={circle},node distance=60pt]
     \node[draw] (1) {$s$};
@@ -73,11 +74,37 @@ Serie 6}
     \node[draw] (5)[below right of=1] {$x$} edge[<-]node[below left]{3} (1) edge[->]node[below right]{4}(3);
     \end{tikzpicture}
     \end{center}
-    Hier ist nun $\delta(s)$ kein minimaler $(s,t)$-Schnitt mehr, denn $c(\delta(s))=6$, \linebreak aber $c(\delta(\{s,u,x,v\}))=5$.\\
+    Hier ist nun $\delta^+(s)$ kein minimaler $(s,t)$-Schnitt mehr, denn $c(\delta^+(s))=6$, \linebreak aber $c(\delta^+(\{s,u,x,v\}))=5$.\\
     Das Problem bei dieser Veränderung ist, dass  ein $(s,t)$-Schnitt in der Anzahl der beteiligten Kanten skaliert wird.
   \end{enumerate}  
   
 \section*{Aufgabe 22}
 \section*{Aufgabe 23}
-
-\end{document}
+Im folgenden nennen wir ein kardinalitätsmaximales Matching ein \emph{größtes} Matching, und einen maximalen, zulässigen $(s,t)$-Fluss einen \emph{größten} Fluss.\\
+Zunächst zeigen wir, dass der Wert eines größten Matchings dem eines größten Flusses entspricht.\\
+Sei also ein größtes Matching $M\subseteq E$ gegeben. Betrachte nun die gerichtete Variante $M'=\{(u,v)\in V_1\times V_2|\{u,v\}\in M\}$. Dann ist 
+$$x_a=\begin{cases}1 &a\in \{(s,u)|\exists v\in V_2:uv\in M'\}\cup M'\cup \{(v,t)|\exists u\in V_1:uv\in M'\}\\
+0&\text{sonst}\end{cases}$$
+offensichtlich ein zulässiger Fluss, dessen Wert dem von $M$ entspricht.\\
+Andererseits ist aber auch $S:=\delta^+(\{s\}\cup V_1\cup \{v\in V_2|\exists u\in V_1:uv\in M'\}$ ein $(s,t)$-Schnitt, dessen Kapazität dem Wert von $M$ entspricht, denn wenn $c(S)$ größer wäre, so könnten wir ein größeres Matching finden, indem wir alle Kanten aus $S$ in ihrer ungerichteten Form zu $M$ hinzunähmen.\\
+Hier wird schon deutlich, wie wir aus größten Flüssen $x$ in $D$, deren Werte alle aus $\{0,1\}$ kommen (im folgenden 0-1-Flüsse genannt), in größte Matchings überführen.\\
+Einen beliebigen größten Fluss wandeln wir folgendermaßen in einen größten 0-1-Fluss um:\\
+\begin{lstlisting}[mathescape]
+for each $su\in A$
+  $x_{su}$=0;
+for each $vt\in A$
+  $x_{vt}$=0;
+for each $uv\in A\cap V_1\times V_2$
+if 0<$x_{uv}$
+  begin
+   $x_{uv}$=1;
+   $x_{su}$=1;
+   $x_{vt}$=1;
+   for each $uv'\in A$
+     $x_{uv'}$=0;
+   for each $u'v\in A$
+     $x_{u'v}$=0;  
+  end
+\end{lstlisting}
+Dieser Algorithmus verändert den Wert des ursprünglichen Flusses nicht, da für jeden solchen Bogen $uv$ entweder $su$ oder $vt$ (oder beide) bereits saturiert war, sonst könnte man ja den Fluss vergrößern. Bauen wir uns also einen Schnitt $S$ auf, der $su$ enthält falls dieser Bogen saturiert war oder im anderen Falle $vt$, so erhalten wir einen minimalen Schnitt, der sowohl durch den ursprünglichen Fluss als auch durch den veränderten saturiert wird.
+\end{document} 
