@@ -37,7 +37,7 @@ Serie 6}
     Hier können wir alle Bögen saturieren (d.h. $x_a=c_a\,\forall a\in A$) und erhalten einen maximalen Fluss. Insbesondere ist aber $x_{uv}=x_{vu}=1$.
 
   \item Diese Aussage ist wahr. Seien ein Netzwerk $((V,A),c,s,t)$ und ein maximaler Fluss $x_a,a\in A$ gegeben. Seien $u,v\in V$ mit $x_{uv}\neq0\neq x_{vu}$. O.B.d.A. sei $x_{uv}\geq x_{vu}$ (sonst vertausche $u$ und $v$). Dann ist auch $x'_{a},a\in A$ ein maximaler Fluss mit $x'_a=x_a\,\forall a\in A\setminus\{(u,v),(v,u)\}$ und $x'_{uv}=x_{uv}-x_{vu},x'_{v,u}=0$.\\
-  Man sieht, dass für jeden Knoten $v$ gilt: $\sum\limits_{a\in\delta^+(v)}x'_a-\sum\limits_{a\in\delta^-(v)}x'_a=\sum\limits_{a\in\delta^+(v)}x_a-\sum\limits_{a\in\delta^-(v)}x_a$. Dies gilt, da sich für alle Knoten außer $u$ und $v$ nichts ändert und für diese beiden sich beide Summen um den gleichen Betrag ändern. Außerdem bleibt der Fluss auch maximal, da sich die Bilanz auch für $s$ nicht geändert hat. Dieses Verfahren kann man sooft wiederholen, bis die geforderte Bedingung für alle Knotenpaare erfüllt ist, da zwei solche Veränderungen sich gegenseitig nicht beeinflussen.
+  Man sieht, dass für jeden Knoten $v$ gilt: $\sum\limits_{a\in\delta^+(v)}x'_a-\sum\limits_{a\in\delta^-(v)}x'_a=\sum\limits_{a\in\delta^+(v)}x_a-\sum\limits_{a\in\delta^-(v)}x_a$. Dies gilt, da sich für alle Knoten außer $u$ und $v$ nichts ändert und für diese beiden sich beide Summen um den gleichen Betrag ändern. Außerdem bleibt der Fluss auch maximal, da sich die Bilanz auch für $s$ nicht geändert hat. Dieses Verfahren kann man so oft wiederholen, bis die geforderte Bedingung für alle Knotenpaare erfüllt ist, da zwei solche Veränderungen sich gegenseitig nicht beeinflussen.
   \item Diese Aussage ist falsch. Betrachte folgendes Gegenbeispiel:
     \begin{center}
     \begin{tikzpicture}[every node/.style={circle},node distance=60pt]
@@ -79,6 +79,5 @@ Serie 6}
   
 \section*{Aufgabe 22}
 \section*{Aufgabe 23}
-
 
 \end{document}
