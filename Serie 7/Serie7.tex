@@ -22,6 +22,19 @@ Serie 7}
 \maketitle
 
 \section*{Aufgabe 25}
+ \begin{center}
+   $N:$
+   \begin{tikzpicture}[baseline=2.3cm,thick]
+    \node[circle,draw] (1) at (0,0)   {1} node at (-0.7,0) {10};
+    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[above left] {(1,10)} (1) node at (2,2.7)  {20};
+    \node[circle,draw] (3) at (4,0)   {3} edge[<-] node[above right] {(0,10)} (2) node at (4,-0.7) {0};
+    \node[circle,draw] (4) at (2,-2)  {4} edge[<-] node[below left] {(2,15)} (1) edge[<-] node[below right] {(1,5)} (3) node at (2,-2.7) {-5};
+    \node[circle,draw] (5) at (8,0)   {5} edge[<-] node[above] {(4,10)} (3) node at (8,-0.7) {0};
+    \node[circle,draw] (6) at (10,2)  {6} edge[<-] node[above] {(6,10)} (2) edge[<-] node[above left]  {(2,20)} (5) node at (10,2.7)  {0};
+    \node[circle,draw] (7) at (10,-2) {7} edge[<-] node[below] {(5,10)} (4) edge[<-] node[below left]  {(7,15)} (5) node at (10,-2.7) {-15};
+    \node[circle,draw] (8) at (12,0)  {8} edge[<-] node[above right] {(8,10)} (6) edge[<-] node[below right] {(9,15)} (7) node at (12.8,0) {-10};
+   \end{tikzpicture}
+ \end{center}
 \section*{Aufgabe 26}
 \section*{Aufgabe 27}
 \section*{Aufgabe 28}
