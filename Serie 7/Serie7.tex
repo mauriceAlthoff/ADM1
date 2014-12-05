@@ -112,7 +112,11 @@ Füge zunächst eine Quelle $s$ und eine Senke $t$ ein:
                      \text{Kosten des ersten Spediteurs}&a\in A_1\\
                      \text{Kosten des zweiten Spediteurs}&a\in A_2.
        \end{cases}$$
- Nun sind wir im Standardfell für das Minimalkosten-Flussproblem.
+ Nun sind wir im Standardfall für das Minimalkosten-Flussproblem.
 \section*{Aufgabe 27}
+Wir modellieren das Problem als Transshipment Problem. $D=(V,A), V=V_a \mathbin{\dot{\cup}} V_n \mathbin{\dot{\cup}} V_u$ \\
+$V_a=$Lager mit Schlitten$,V_n=Zielorte,V_u=$alle Lager\\
+Jeder Bogen $a\in A$ hat eine Kapazit\"at $c(a)=Liefermenge$ und einen Kostenkoeffizient $w(a)=Reisezeit$ und Es gilt $v \in V_a \forall a(v), v \in V_n \forall b(v)$\\
+Zum L\"osen des Problems wird der Primal-Dual-Algorithmus empfohlen. Um dann die Anzahl der Wichtel zu bestimmen muss nur die Anzahl der verwendeten Schlitten mal 2 genommen werden, da f\"ur die Wichtel keine Pausen oder Arbeitszeiten ber\"ucksichtigt werden m\"ussen.
 \section*{Aufgabe 28}
 \end{document} 
