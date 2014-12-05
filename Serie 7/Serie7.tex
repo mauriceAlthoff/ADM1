@@ -22,20 +22,85 @@ Serie 7}
 \maketitle
 
 \section*{Aufgabe 25}
+Füge zunächst eine Quelle $s$ und eine Senke $t$ ein:
  \begin{center}
    $N:$
-   \begin{tikzpicture}[baseline=2.3cm,thick]
-    \node[circle,draw] (1) at (0,0)   {1} node at (-0.7,0) {10};
-    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[above left] {(1,10)} (1) node at (2,2.7)  {20};
-    \node[circle,draw] (3) at (4,0)   {3} edge[<-] node[above right] {(0,10)} (2) node at (4,-0.7) {0};
-    \node[circle,draw] (4) at (2,-2)  {4} edge[<-] node[below left] {(2,15)} (1) edge[<-] node[below right] {(1,5)} (3) node at (2,-2.7) {-5};
-    \node[circle,draw] (5) at (8,0)   {5} edge[<-] node[above] {(4,10)} (3) node at (8,-0.7) {0};
-    \node[circle,draw] (6) at (10,2)  {6} edge[<-] node[above] {(6,10)} (2) edge[<-] node[above left]  {(2,20)} (5) node at (10,2.7)  {0};
-    \node[circle,draw] (7) at (10,-2) {7} edge[<-] node[below] {(5,10)} (4) edge[<-] node[below left]  {(7,15)} (5) node at (10,-2.7) {-15};
-    \node[circle,draw] (8) at (12,0)  {8} edge[<-] node[above right] {(8,10)} (6) edge[<-] node[below right] {(9,15)} (7) node at (12.8,0) {-10};
-   \end{tikzpicture}
+   \begin{tikzpicture}[baseline=1.8cm,thick]
+    \node[circle,draw] (s) at (-2,2)  {s};
+    \node[circle,draw] (1) at (0,0)   {1} edge[<-] node[below left] {(0,10)} (s);
+    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[above left] {(1,10)} (1) edge[<-] node[above] {(0,20)} (s);
+    \node[circle,draw] (3) at (4,0)   {3} edge[<-] node[above right] {(0,10)} (2);
+    \node[circle,draw] (4) at (2,-2)  {4} edge[<-] node[below left] {(2,15)} (1) edge[<-] node[below right] {(1,5)} (3);
+    \node[circle,draw] (5) at (8,0)   {5} edge[<-] node[above] {(4,10)} (3);
+    \node[circle,draw] (6) at (10,2)  {6} edge[<-] node[above] {(6,10)} (2) edge[<-] node[above left]  {(2,20)} (5);
+    \node[circle,draw] (7) at (10,-2) {7} edge[<-] node[below] {(5,10)} (4) edge[<-] node[below left]  {(7,15)} (5);
+    \node[circle,draw] (8) at (12,0)  {8} edge[<-] node[above right] {(8,10)} (6) edge[<-] node[above left] {(9,15)} (7);
+    \node[circle,draw] (t) at (10,-4) {t} edge[<-,bend left] node[below] {(0,5)} (4) edge[<-] node[left] {(0,15)} (7) edge[<-,bend right] node[right] {(0,10)} (8);
+   \end{tikzpicture}  
  \end{center}
-\section*{Aufgabe 26}
+ Gesucht ist ein Fluss mit Wert $f:=30$. Für den den Fluss $x_a=0\,\forall a\in A$ ist das resultierende augmentierende Netzwerk gleich $N$.
+ Hier finden wir keine gerichteten Kreise. In diesem Netzwerk hat der Weg $s234t$ das geringste Gewicht für einen $(s,t)$-Weg. Die minimale Kapazität ist 5, das resultierende augmentierende Netzwerk ist:
+ \begin{center}
+   $N_1:$\begin{tikzpicture}[baseline=1.8cm,thick]
+    \node[circle,draw] (s) at (-2,2)  {s};
+    \node[circle,draw] (1) at (0,0)   {1} edge[<-] node[below left] {(0,10)} (s);
+    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[below] {(1,10)} (1) edge[<-,bend right=10] node[above] {(0,15)} (s) edge[->,bend left=10] node[below] {(0,5)} (s);
+    \node[circle,draw] (3) at (4,0)   {3} edge[<-,bend right] node[right] {(0,5)} (2) edge [->, bend left] node[left] {(0,5)} (2);
+    \node[circle,draw] (4) at (2,-2)  {4} edge[<-] node[below left] {(2,15)} (1) edge[->] node[below right] {(-1,5)} (3);
+    \node[circle,draw] (5) at (8,0)   {5} edge[<-] node[above] {(4,10)} (3);
+    \node[circle,draw] (6) at (10,2)  {6} edge[<-] node[above] {(6,10)} (2) edge[<-] node[above left]  {(2,20)} (5);
+    \node[circle,draw] (7) at (10,-2) {7} edge[<-] node[below] {(5,10)} (4) edge[<-] node[below left]  {(7,15)} (5);
+    \node[circle,draw] (8) at (12,0)  {8} edge[<-] node[above right] {(8,10)} (6) edge[<-] node[above left] {(9,15)} (7);
+    \node[circle,draw] (t) at (10,-4) {t} edge[->,bend left] node[below] {(0,5)} (4) edge[<-] node[left] {(0,15)} (7) edge[<-,bend right] node[right] {(0,10)} (8);
+   \end{tikzpicture}  
+ \end{center}
+ In diesem Netzwerk hat der Weg $s147t$ das geringste Gewicht für einen $(s,t)$-Weg. Die minimale Kapazität ist 10, das resultierende augmentierende Netzwerk ist:
+ \begin{center}
+   $N_2:$\begin{tikzpicture}[baseline=1.8cm,thick]
+    \node[circle,draw] (s) at (-2,2)  {s};
+    \node[circle,draw] (1) at (0,0)   {1} edge[->] node[below left] {(0,10)} (s);
+    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[below] {(1,10)} (1) edge[<-,bend right=10] node[above] {(0,15)} (s) edge[->,bend left=10] node[below] {(0,5)} (s);
+    \node[circle,draw] (3) at (4,0)   {3} edge[<-,bend right=10] node[right] {(0,5)} (2) edge [->, bend left=10] node[left] {(0,5)} (2);
+    \node[circle,draw] (4) at (2,-2)  {4} edge[<-,bend left] node[left] {(2,5)} (1) edge[->,bend right] node[right] {(-2,10)} (1) edge[->] node[below right] {(-1,5)} (3);
+    \node[circle,draw] (5) at (8,0)   {5} edge[<-] node[above] {(4,10)} (3);
+    \node[circle,draw] (6) at (10,2)  {6} edge[<-] node[above] {(6,10)} (2) edge[<-] node[above left]  {(2,20)} (5);
+    \node[circle,draw] (7) at (10,-2) {7} edge[->] node[below] {(-5,10)} (4) edge[<-] node[below left]  {(7,15)} (5);
+    \node[circle,draw] (8) at (12,0)  {8} edge[<-] node[above right] {(8,10)} (6) edge[<-] node[above left] {(9,15)} (7);
+    \node[circle,draw] (t) at (10,-4) {t} edge[->,bend left] node[below] {(0,5)} (4) edge[<-,bend left=10] node[left] {(0,5)} (7) edge[->,bend right=10] node[right] {(0,10)} (7) edge[<-,bend right] node[right] {(0,10)} (8);
+   \end{tikzpicture}  
+ \end{center}
+ In diesem Netzwerk hat der Weg $s2357t$ das geringste Gewicht für einen $(s,t)$-Weg. Die minimale Kapazität ist 5, das resultierende augmentierende Netzwerk ist:
+ \begin{center}
+   $N_3:$\begin{tikzpicture}[baseline=1.8cm,thick]
+    \node[circle,draw] (s) at (-2,2)  {s};
+    \node[circle,draw] (1) at (0,0)   {1} edge[->] node[below left] {(0,10)} (s);
+    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[below] {(1,10)} (1) edge[<-,bend right=10] node[above] {(0,10)} (s) edge[->,bend left=10] node[below] {(0,10)} (s);
+    \node[circle,draw] (3) at (4,0)   {3}  edge [->,] node[left] {(0,10)} (2);
+    \node[circle,draw] (4) at (2,-2)  {4} edge[<-,bend left] node[left] {(2,5)} (1) edge[->,bend right] node[right] {(-2,10)} (1) edge[->] node[below right] {(-1,5)} (3);
+    \node[circle,draw] (5) at (8,0)   {5} edge[<-,bend right=10] node[above] {(4,5)} (3) edge[->,bend left=10] node[below] {(-4,5)} (3);
+    \node[circle,draw] (6) at (10,2)  {6} edge[<-] node[above] {(6,10)} (2) edge[<-] node[above left]  {(2,20)} (5);
+    \node[circle,draw] (7) at (10,-2) {7} edge[->] node[below] {(-5,10)} (4) edge[<-,bend left=10] node[left]  {(7,10)} (5) edge[->,bend right=10] node[right]  {(-7,5)} (5);
+    \node[circle,draw] (8) at (12,0)  {8} edge[<-] node[above right] {(8,10)} (6) edge[<-] node[above] {(9,15)} (7);
+    \node[circle,draw] (t) at (10,-4) {t} edge[->,bend left] node[below] {(0,5)} (4) edge[->] node[left] {(0,15)} (7) edge[<-,bend right] node[right] {(0,10)} (8);
+   \end{tikzpicture}  
+ \end{center}
+ In diesem Netzwerk hat der Weg $s268t$ das geringste Gewicht für einen $(s,t)$-Weg. Die minimale Kapazität ist 10, das resultierende augmentierende Netzwerk ist:
+ \begin{center}
+   $N_4:$\begin{tikzpicture}[baseline=1.8cm,thick]
+    \node[circle,draw] (s) at (-2,2)  {s};
+    \node[circle,draw] (1) at (0,0)   {1} edge[->] node[below left] {(0,10)} (s);
+    \node[circle,draw] (2) at (2,2)   {2} edge[->] node[below] {(1,10)} (1) edge[->] node[below] {(0,20)} (s);
+    \node[circle,draw] (3) at (4,0)   {3}  edge [->,] node[left] {(0,10)} (2);
+    \node[circle,draw] (4) at (2,-2)  {4} edge[<-,bend left] node[left] {(2,5)} (1) edge[->,bend right] node[right] {(-2,10)} (1) edge[->] node[below right] {(-1,5)} (3);
+    \node[circle,draw] (5) at (8,0)   {5} edge[<-,bend right=10] node[above] {(4,5)} (3) edge[->,bend left=10] node[below] {(-4,5)} (3);
+    \node[circle,draw] (6) at (10,2)  {6} edge[->] node[above] {(-6,10)} (2) edge[<-] node[above left]  {(2,20)} (5);
+    \node[circle,draw] (7) at (10,-2) {7} edge[->] node[below] {(-5,10)} (4) edge[<-,bend left=10] node[left]  {(7,10)} (5) edge[->,bend right=10] node[right]  {(-7,5)} (5);
+    \node[circle,draw] (8) at (12,0)  {8} edge[->] node[above right] {(-8,10)} (6) edge[<-] node[above] {(9,15)} (7);
+    \node[circle,draw] (t) at (10,-4) {t} edge[->,bend left] node[below] {(0,5)} (4) edge[->] node[left] {(0,15)} (7) edge[->,bend right] node[right] {(0,10)} (8);
+   \end{tikzpicture}  
+ \end{center}
+ Nun hat der Fluss den gewünschten Wert, die Kosten betragen $1\cdot 5+7\cdot 10+11\cdot 5+14\cdot 5=200$.
+ \section*{Aufgabe 26}
 \section*{Aufgabe 27}
 \section*{Aufgabe 28}
 \end{document} 
