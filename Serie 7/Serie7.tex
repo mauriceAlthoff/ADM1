@@ -101,6 +101,18 @@ Füge zunächst eine Quelle $s$ und eine Senke $t$ ein:
  \end{center}
  Nun hat der Fluss den gewünschten Wert, die Kosten betragen $1\cdot 5+7\cdot 10+11\cdot 5+14\cdot 5=200$.
  \section*{Aufgabe 26}
+ Hierzu nutzen wir einfach parallele Bögen. Unsere Knotenmenge ist $V=\{s,t\}\cup F\cup Z\cup S$ und unsrere Bogenmenge ist $A=A_1\dot\cup A_2\cup \{(s,f)|f\in F\}\cup\{(m,t)|m\in S\}$, wobei $A_1=A_2=F\times Z\cup Z\times S$. Die unteren Kapazitäten sind 0 und die oberen Kapazitäten $c_a$ werden definiert durch
+ $$c_a=\begin{cases} a_f&a\in\{s\}\times F\\
+                     b_m&a\in S\times\{t\}\\
+                     \text{Kapazität des ersten Spediteurs}&a\in A_1\\
+                     \text{Kapazität des zweiten Spediteurs}&a\in A_2.
+       \end{cases}$$
+ Die Kosten werden folglich definiert durch
+ $$k_a=\begin{cases} 0&a\in\{s\}\times F\cup S\times\{t\}\\
+                     \text{Kosten des ersten Spediteurs}&a\in A_1\\
+                     \text{Kosten des zweiten Spediteurs}&a\in A_2.
+       \end{cases}$$
+ Nun sind wir im Standardfell für das Minimalkosten-Flussproblem.
 \section*{Aufgabe 27}
 \section*{Aufgabe 28}
 \end{document} 
