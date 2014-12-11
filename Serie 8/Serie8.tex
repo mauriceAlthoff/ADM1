@@ -25,7 +25,8 @@ Serie 8}
 \section*{Aufgabe 30}
 \section*{Aufgabe 31}
 \section*{Aufgabe 32}
- \begin{center}
+Wir modellieren die Aufgabe als bipartites Matching-Problem. Wir haben auf der einen Seite die Geschenke $G_m$ und auf der anderen Seite alle Fertigstellungszeitpunkte $T_n$. Die B\"ogen bekommen eine Kapazit\"at von 1 und einen Kostenkoeffizienten der durch die Kostenfunktion $c(a)=c_g(t_g)$ festgellegt wird. Dann werden die super-Quelle(s) und -Senke(t) hinzugef\"ugt und wir sind fertig.
+\begin{center}
    \begin{tikzpicture}[baseline=1.8cm,thick]
     \node[circle,draw] (T1) at (6,2)  {$T_1$};
     \node[circle,draw] (T2) at (6,0)  {$T_2$};
@@ -39,7 +40,4 @@ Serie 8}
     \node[circle,draw] (s) at (-2,-1) {s} edge[->] (G1) edge[->] (G2) edge[->] (G3) edge[->] (Gm);
    \end{tikzpicture}  
  \end{center}
-
- $T_i=$Zeitpunkt der Fertigstellung \\
- Die Bogengewichte $C(a)= \sum_{\substack{g\in G} C_g(t_i)}$
 \end{document} 
