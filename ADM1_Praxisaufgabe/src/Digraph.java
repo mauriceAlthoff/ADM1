@@ -3,12 +3,12 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 
-public class Netzwerk {
+public class Digraph {
 	
 	private Knoten[] knoten = null;
 	private Bogen[]  boegen = null;
 	
-	public Netzwerk (String dateiname) {
+	public Digraph (String dateiname) {
 		try {
 			RandomAccessFile raf = new RandomAccessFile(dateiname, "r");
 			int bogenIdx = 0;
@@ -45,5 +45,13 @@ public class Netzwerk {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public Knoten[] getKnoten () {
+		return knoten;
+	}
+	
+	public Bogen[] getBoegen () {
+		return boegen;
 	}
 }

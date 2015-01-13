@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 public class Knoten {
 
-	private int flow;
+	private int bedarf;
 	
 	private ArrayList<Bogen> ausgehend = new ArrayList<Bogen>();
 	private ArrayList<Bogen> eingehend = new ArrayList<Bogen>();
 	
 	public Knoten (int flow) {
-		this.flow = flow;
+		this.bedarf = flow;
 	}
 	
-	public int getFlow () {
-		return flow;
+	public int getBedarf () {
+		return bedarf;
 	}
 	
 	public ArrayList<Bogen> getAusgehendeBoegen () {
@@ -24,8 +24,8 @@ public class Knoten {
 		return eingehend;
 	}
 	
-	public void setFlow (int flow) {
-		this.flow = flow;
+	public void setBedarf (int bedarf) {
+		this.bedarf = bedarf;
 	}
 	
 	public void addAusgehendenBogen (Bogen bogen) {
