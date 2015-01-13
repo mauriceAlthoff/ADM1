@@ -9,6 +9,10 @@ public class NetzwerkSimplex {
 	private static Knoten[] initKnoten;
 	private static Bogen[]  initBoegen;
 	
+	private static ArrayList<Bogen> T;
+	private static ArrayList<Bogen> L;
+	private static ArrayList<Bogen> U;
+	
 	public static void initialisierung (Digraph graph) {
 		knoten = graph.getKnoten();
 		boegen = graph.getBoegen();
@@ -62,6 +66,13 @@ public class NetzwerkSimplex {
 			initKnoten[initKnoten.length - 1].addAusgehendenBogen(bogen);
 			V_minus.get(i).addEingehendenBogen(bogen);
 			initBoegen[boegen.length + V_plus.size() + i] = bogen;
+		}
+		
+		for (int i = 0; i < boegen.length; i++) {
+			L.add(initBoegen[i]);
+		}
+		for (int i = boegen.length; i < initBoegen.length; i++) {
+			T.add(initBoegen[i]);
 		}
 	}
 	
