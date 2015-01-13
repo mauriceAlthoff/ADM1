@@ -19,7 +19,7 @@ public class Netzwerk {
 				if (token[0].equals("p")) {
 					int k = Integer.parseInt(token[2]); 
 					int b = Integer.parseInt(token[3]);
-					System.out.printf("Dimensions %d %d\n", k,b);
+					//System.out.printf("Dimensions %d %d\n", k,b);
 					knoten = new Knoten[k];
 					boegen = new Bogen[b];
 				}
