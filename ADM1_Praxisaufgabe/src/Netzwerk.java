@@ -17,19 +17,22 @@ public class Netzwerk {
 			while (zeile != null) {
 				String[] token = zeile.split(" ");
 				if (token[0].equals("p")) {
-					knoten = new Knoten[Integer.getInteger(token[3])];
-					boegen = new Bogen[Integer.getInteger(token[4])];
+					int k = Integer.parseInt(token[2]); 
+					int b = Integer.parseInt(token[3]);
+					System.out.printf("Dimensions %d %d\n", k,b);
+					knoten = new Knoten[k];
+					boegen = new Bogen[b];
 				}
 				if (token[0].equals("n")) {
-					knoten[Integer.getInteger(token[1])-1] = new Knoten(Integer.getInteger(token[2])); 
+					knoten[Integer.parseInt(token[1])-1] = new Knoten(Integer.parseInt(token[2])); 
 				}
 				if (token[0].equals("a")) {
-					Bogen bogen = new Bogen(Integer.getInteger(token[4]), Integer.getInteger(token[5])
-							, Integer.getInteger(token[6]), knoten[Integer.getInteger(token[1])]
-							, knoten[Integer.getInteger(token[2])]);
+					Bogen bogen = new Bogen(Integer.parseInt(token[3]), Integer.parseInt(token[4])
+							, Integer.parseInt(token[5]), knoten[Integer.parseInt(token[1])-1]
+							, knoten[Integer.parseInt(token[2])-1]);
 					boegen[bogenIdx] = bogen;
-					knoten[Integer.getInteger(token[1])].addAusgehendenBogen(bogen);
-					knoten[Integer.getInteger(token[2])].addEingehendenBogen(bogen);
+					knoten[Integer.parseInt(token[1])-1].addAusgehendenBogen(bogen);
+					knoten[Integer.parseInt(token[2])-1].addEingehendenBogen(bogen);
 				}
 				
 				zeile = raf.readLine();
