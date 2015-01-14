@@ -13,7 +13,7 @@ public class NetzwerkSimplex {
 	private static ArrayList<Bogen> L;
 	private static ArrayList<Bogen> U;
 	
-	public static void initialisierung (Digraph graph) {
+	public void initialisierung (Digraph graph) {
 		knoten = graph.getKnoten();
 		boegen = graph.getBoegen();
 		
@@ -76,23 +76,28 @@ public class NetzwerkSimplex {
 		}
 	}
 	
-	public static void berechnungKnotenpreise () {
+	public void berechnungKnotenpreise () {
 		
 	}
 	
-	public static void optimalitaetstest () {
+	public Boolean optimalitaetstest () {
+		// dummy
+		return true;
+	}
+	
+	public void pricing () {
 		
 	}
 	
-	public static void pricing () {
+	public void augmentierung () {
 		
 	}
 	
-	public static void augmentierung () {
+	public void update () {
 		
 	}
 	
-	public static void update () {
-		
+	public void printSolution() {
+		System.out.printf("This is the end my friend");		
 	}
 }
