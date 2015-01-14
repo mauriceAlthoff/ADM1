@@ -6,8 +6,8 @@ public class NetzwerkSimplex {
 	private static Knoten[] knoten;
 	private static Bogen[]  boegen;
 	
-	private static Knoten[] initKnoten;
-	private static Bogen[]  initBoegen;
+	private static ArrayList<Knoten> initKnoten;
+	private static ArrayList<Bogen>  initBoegen;
 	
 	private static ArrayList<Bogen> T;
 	private static ArrayList<Bogen> L;
@@ -17,11 +17,10 @@ public class NetzwerkSimplex {
 		knoten = graph.getKnoten();
 		boegen = graph.getBoegen();
 		
-		initKnoten = new Knoten[knoten.length + 1];
 		for (int i = 0; i < knoten.length; i++) {
-			initKnoten[i] = knoten[i];
+			initKnoten.add(knoten[i]);
 		}	
-		initKnoten[knoten.length - 1] = new Knoten(0);
+		initKnoten.add( new Knoten(0));
 		
 		ArrayList<Knoten> V_plus = new ArrayList<Knoten>();
 		ArrayList<Knoten> V_minus = new ArrayList<Knoten>();		
@@ -46,33 +45,35 @@ public class NetzwerkSimplex {
 		}
 		
 		int maxKosten = 0;
-		initBoegen = new Bogen[boegen.length + knoten.length];
-		for (int i = 0; i < boegen.length; i++) {
-			initBoegen[i] = boegen[i];
-			if (Math.abs(boegen[i].getKosten()) > maxKosten) {
-				maxKosten = Math.abs(boegen[i].getKosten());
+		initBoegen.clear();
+		for (int i = 0; i < boegen.length - 1; i++) {
+			if (boegen[i] != null) {
+				initBoegen.add(boegen[i]);
+				if (Math.abs(boegen[i].getKosten()) > maxKosten) {
+					maxKosten = Math.abs(boegen[i].getKosten());
+				}
 			}
 		}
 		
 		int M = 1 + 1/2 * knoten.length * maxKosten;
 		for (int i = 0; i < V_plus.size(); i++) {
-			Bogen bogen = new Bogen(0, -1, M, V_plus.get(i), initKnoten[initKnoten.length - 1]);
+			Bogen bogen = new Bogen(0, -1, M, V_plus.get(i), initKnoten.get(initKnoten.size() - 1));
 			V_plus.get(i).addAusgehendenBogen(bogen);
-			initKnoten[initKnoten.length - 1].addEingehendenBogen(bogen);
-			initBoegen[boegen.length + i] = bogen;
+			initKnoten.get(initKnoten.size()- 1).addEingehendenBogen(bogen);
+			initBoegen.add(boegen.length + i, bogen);
 		}
 		for (int i = 0; i < V_minus.size(); i++) {
-			Bogen bogen = new Bogen(0, -1, M, initKnoten[initKnoten.length - 1], V_minus.get(i));
-			initKnoten[initKnoten.length - 1].addAusgehendenBogen(bogen);
+			Bogen bogen = new Bogen(0, -1, M, initKnoten.get(initKnoten.size() - 1), V_minus.get(i));
+			initKnoten.get(initKnoten.size() - 1).addAusgehendenBogen(bogen);
 			V_minus.get(i).addEingehendenBogen(bogen);
-			initBoegen[boegen.length + V_plus.size() + i] = bogen;
+			initBoegen.add(boegen.length + V_plus.size() + i, bogen);
 		}
 		
 		for (int i = 0; i < boegen.length; i++) {
-			L.add(initBoegen[i]);
+			L.add(initBoegen.get(i));
 		}
-		for (int i = boegen.length; i < initBoegen.length; i++) {
-			T.add(initBoegen[i]);
+		for (int i = boegen.length; i < initBoegen.size(); i++) {
+			T.add(initBoegen.get(i));
 		}
 	}
 	
