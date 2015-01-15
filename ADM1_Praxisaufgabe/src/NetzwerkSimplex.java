@@ -14,12 +14,15 @@ public class NetzwerkSimplex {
 	private static ArrayList<Bogen> U;
 	
 	public void initialisierung (Digraph graph) {
+		initKnoten = new ArrayList<Knoten>();
+		initBoegen = new ArrayList<Bogen>();
+		
 		knoten = graph.getKnoten();
 		boegen = graph.getBoegen();
 		
-		for (int i = 0; i < knoten.length; i++) {
+		for (int i = 0; i < knoten.length -1; i++) {
 			initKnoten.add(knoten[i]);
-		}	
+		}
 		initKnoten.add( new Knoten(0));
 		
 		ArrayList<Knoten> V_plus = new ArrayList<Knoten>();
@@ -60,14 +63,19 @@ public class NetzwerkSimplex {
 			Bogen bogen = new Bogen(0, -1, M, V_plus.get(i), initKnoten.get(initKnoten.size() - 1));
 			V_plus.get(i).addAusgehendenBogen(bogen);
 			initKnoten.get(initKnoten.size()- 1).addEingehendenBogen(bogen);
-			initBoegen.add(boegen.length + i, bogen);
+			initBoegen.add(bogen);
 		}
 		for (int i = 0; i < V_minus.size(); i++) {
 			Bogen bogen = new Bogen(0, -1, M, initKnoten.get(initKnoten.size() - 1), V_minus.get(i));
 			initKnoten.get(initKnoten.size() - 1).addAusgehendenBogen(bogen);
 			V_minus.get(i).addEingehendenBogen(bogen);
-			initBoegen.add(boegen.length + V_plus.size() + i, bogen);
+			//initBoegen.add(boegen.length + V_plus.size() + i, bogen);
+			initBoegen.add(bogen);
 		}
+
+		L = new ArrayList<Bogen>();
+		T = new ArrayList<Bogen>();
+		U = new ArrayList<Bogen>();
 		
 		for (int i = 0; i < boegen.length; i++) {
 			L.add(initBoegen.get(i));

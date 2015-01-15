@@ -19,7 +19,7 @@ public class Digraph {
 				if (token[0].equals("p")) {
 					int k = Integer.parseInt(token[2]); 
 					int b = Integer.parseInt(token[3]);
-					//System.out.printf("Dimensions %d %d\n", k,b);
+					System.out.printf("Dimensions %d %d\n", k,b);
 					knoten = new Knoten[k];
 					boegen = new Bogen[b];
 				}
@@ -33,6 +33,7 @@ public class Digraph {
 					boegen[bogenIdx] = bogen;
 					knoten[Integer.parseInt(token[1])-1].addAusgehendenBogen(bogen);
 					knoten[Integer.parseInt(token[2])-1].addEingehendenBogen(bogen);
+					bogenIdx++;
 				}
 				
 				zeile = raf.readLine();
