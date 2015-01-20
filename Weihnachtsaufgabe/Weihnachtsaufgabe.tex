@@ -21,6 +21,7 @@ Weihnachtsaufgabe}
 
 \maketitle
 
+Alle Aufgaben wurden mit einer Breitensuche implementiert, da diese optimal für Graphen mit uniformen Kantenlängen ist, also das gleiche Ergebnis wie ein Kürzeste-Wege-Algorithmus liefert.
 \section*{a)}
 Der Graph $D_4$ ist nicht zusammenhängend, er besitzt 205 Zusammenhangskomponenten.  Die größten 5 Zusammenhangskomponenten besitzen folgende Kradinalität:\\
 \\
@@ -32,7 +33,11 @@ Komponente 5: 5 Knoten
 \section*{b)}
 Der größte Grad eines Knotens des Graphen $D_4$ ist 16. \textit{Maus} ist das einzige Wort, dessen Knoten diesen Grad besitzt und besitzt daher die größte Nachbarschaft. Es existieren viele isolierte Knoten, meist die Knoten dessen Worte Symbole aus anderen Sprachen besitzen(bspw. Apostroph) oder eventuell Namen repräsentieren. Beispiele: \textit{Ulks}, \textit{Ryti}, \textit{Rácz}, \textit{Onyx}, \textit{Ezio}, \textit{Abbé}
 \section*{c)}
-Es existiert nur eine Zusammenhangskomponente mit mindestens 20 Knoten und zwar diejenige, die den Knoten \textit{Aale} enthält. 
+Es existiert nur eine Zusammenhangskomponente mit mindestens 20 Knoten und zwar diejenige, die den Knoten \textit{Aale} enthält. Für diese Zusammenhangskompontente gilt, dass die längsten kürzesten Wege 21 Kanten besitzen, also gilt L' = 21. Beispiele sind:\\
+\\
+Whip->Chip->Clip->Flip->Flop->Floß->Kloß->Klon->Klan->Kran->Gran->Gras->Grus->Gaus->Maus->Maas->Maat->Saat->Spat->Spot->Slot->Plot\\
+\\
+Chic->Chip->Clip->Flip->Flop->Floß->Kloß->Klon->Klan->Kran->Gran->Gras->Grus->Gaus->Taus->Tals->Talk->Kalk->Kali->Kuli->Juli->Juni
 \section*{d)}
 Da alle Bögen in $D_4$ uniforme Länge besitzen, ist das Ergebnis einer Breitensuche bis zum erstmaligen Auftreten des Knotens mit dem Nomen \textit{Baum} äquivalent zur Lösung eines Kürzeste-Wege-Algorithmus. Das Ergebnis lautet:\\
 \\

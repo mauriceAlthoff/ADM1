@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  18 JAN 2015 20:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.21)  20 JAN 2015 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -843,8 +843,30 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Try loading font information for U+stmry on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
-Underfull \hbox (badness 10000) in paragraph at lines 25--32
+Underfull \hbox (badness 10000) in paragraph at lines 26--33
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--41
+
+ []
+
+
+Overfull \hbox (16.52422pt too wide) in paragraph at lines 36--41
+\T1/cmr/m/n/12 Whip->Chip->Clip->Flip->Flop->Floÿ->Kloÿ->Klon->Klan->Kran->Gran
+->Gras->Grus-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 36--41
+
+ []
+
+
+Overfull \hbox (11.63374pt too wide) in paragraph at lines 36--41
+\T1/cmr/m/n/12 Chic->Chip->Clip->Flip->Flop->Floÿ->Kloÿ->Klon->Klan->Kran->Gran
+->Gras->Grus-
  []
 
 [1
@@ -853,7 +875,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--32
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 37--40
+Underfull \hbox (badness 10000) in paragraph at lines 42--45
 
  []
 
@@ -873,7 +895,7 @@ sr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts
 /type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/fonts/type1/public/cm-sup
 er/sfsx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsx2488.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on Weihnachtsaufgabe.pdf (2 pages, 108599 bytes).
+Output written on Weihnachtsaufgabe.pdf (2 pages, 110278 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  31 compressed objects within 1 object stream
