@@ -1,28 +1,37 @@
 
 public class Bogen {
 
+	private double fluss;
+	
 	private int untereGrenze;
-	private int kapazitaet;
+	private int obereGrenze;
 	private int kosten;
+	
 	
 	private Knoten ausgehend;
 	private Knoten eingehend;
 	
-	public Bogen (int untereGrenze, int kapazitaet, int kosten, Knoten ausgehend, Knoten eingehend) {
+	private double reduzierteKosten;
+	
+	public Bogen (int untereGrenze, int obereGrenze, int kosten, Knoten ausgehend, Knoten eingehend) {
 		this.untereGrenze = untereGrenze;
-		this.kapazitaet = kapazitaet;
+		this.obereGrenze = obereGrenze;
 		this.kosten = kosten;
 		
 		this.ausgehend = ausgehend;
 		this.eingehend = eingehend;
 	}
 	
+	public double getFluss() {
+		return fluss;
+	}
+	
 	public int getUntereGrenze () {
 		return untereGrenze;
 	}
 	
-	public int getKapazitaet () {
-		return kapazitaet;
+	public int getObereGrenze () {
+		return obereGrenze;
 	}
 	
 	public int getKosten () {
@@ -37,12 +46,20 @@ public class Bogen {
 		return ausgehend;
 	}
 	
+	public double getReduzierteKosten() {
+		return reduzierteKosten;
+	}
+	
+	public void setFluss (double fluss) {
+		this.fluss = fluss;
+	}
+	
 	public void setUntereGrenze (int untereGrenze) {
 		this.untereGrenze = untereGrenze;
 	}
 	
-	public void setKapazitaet (int kapazitaet) {
-		this.kapazitaet = kapazitaet;
+	public void setObereGrenze (int obereGrenze) {
+		this.obereGrenze = obereGrenze;
 	}
 	
 	public void setKosten (int kosten) {
@@ -55,6 +72,10 @@ public class Bogen {
 	
 	public void setAusgehendenKnoten (Knoten ausgehend) {
 		this.ausgehend = ausgehend;
+	}
+	
+	public void setReduzierteKosten (double reduzierteKosten) {
+		this.reduzierteKosten = reduzierteKosten;
 	}
 		
 }

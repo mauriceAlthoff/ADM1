@@ -8,6 +8,11 @@ public class Digraph {
 	private Knoten[] knoten = null;
 	private Bogen[]  boegen = null;
 	
+	public Digraph (Knoten[] knoten, Bogen[] boegen) {
+		this.knoten = knoten;
+		this.boegen = boegen;
+	}
+	
 	public Digraph (String dateiname) {
 		try {
 			RandomAccessFile raf = new RandomAccessFile(dateiname, "r");
@@ -24,7 +29,7 @@ public class Digraph {
 					boegen = new Bogen[b];
 				}
 				if (token[0].equals("n")) {
-					knoten[Integer.parseInt(token[1])-1] = new Knoten(Integer.parseInt(token[2])); 
+					knoten[Integer.parseInt(token[1])-1] = new Knoten(Integer.parseInt(token[1]), Integer.parseInt(token[2])); 
 				}
 				if (token[0].equals("a")) {
 					Bogen bogen = new Bogen(Integer.parseInt(token[3]), Integer.parseInt(token[4])
@@ -33,7 +38,6 @@ public class Digraph {
 					boegen[bogenIdx] = bogen;
 					knoten[Integer.parseInt(token[1])-1].addAusgehendenBogen(bogen);
 					knoten[Integer.parseInt(token[2])-1].addEingehendenBogen(bogen);
-					bogenIdx++;
 				}
 				
 				zeile = raf.readLine();
@@ -46,6 +50,14 @@ public class Digraph {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void setKnoten (Knoten[] knoten) {
+		this.knoten = knoten;
+	}
+	
+	public void setBoegen (Bogen[] boegen) {
+		this.boegen = boegen;
 	}
 	
 	public Knoten[] getKnoten () {
