@@ -1,6 +1,5 @@
 public class Main {
 	public static void main(String[] args) {
-		//Digraph netzwerk = new Digraph("testset2014/chvatal1.net");
 		Knoten[] knoten = new Knoten[3];
 		Bogen[] boegen = new Bogen[4];
 		
@@ -27,5 +26,13 @@ public class Main {
 		Digraph graph = new Digraph(knoten, boegen);
 		new NetzwerkSimplex().berechne(graph);
 		
+		Digraph graph2 = new Digraph("testset2014/stndrd1.net"); //cap1.net
+		new NetzwerkSimplex().berechne(graph2);
+		
+		Digraph graph1 = new Digraph("testset2014/chvatal1.net");
+		new NetzwerkSimplex().berechne(graph1);
+		
+		Digraph graph3 = new Digraph("testset2014/cap1.net");
+		new NetzwerkSimplex().berechne(graph3);
 	}
 }

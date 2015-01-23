@@ -38,6 +38,7 @@ public class Digraph {
 					boegen[bogenIdx] = bogen;
 					knoten[Integer.parseInt(token[1])-1].addAusgehendenBogen(bogen);
 					knoten[Integer.parseInt(token[2])-1].addEingehendenBogen(bogen);
+					bogenIdx++;
 				}
 				
 				zeile = raf.readLine();
