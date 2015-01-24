@@ -250,14 +250,14 @@ public class NetzwerkSimplex {
 		for (int i = 0; i < B.size(); i++) {
 			Bogen b = B.get(i);
 			b.setFluss(B.get(i).getFluss() - eps);
-			if (b.getFluss() == b.getUntereGrenze()) {
+			if ((int)Math.round(b.getFluss()) == b.getUntereGrenze()) {  // FIXME: caution compare double to int
 				f = b;
 			}
 		}
 		for (int i = 0; i < F.size(); i++) {			
 			Bogen b = F.get(i);
 			b.setFluss(b.getFluss() + eps);
-			if (b.getFluss() == b.getObereGrenze()) {
+			if ((int)Math.round(b.getFluss()) == b.getObereGrenze()) { // FIXME: caution compare double to int
 				f = b;
 			}
 		}
