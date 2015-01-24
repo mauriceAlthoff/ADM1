@@ -230,16 +230,16 @@ public class NetzwerkSimplex {
 		}
 		
 		//Flussänderung berechnen
-		double eps = Double.MAX_VALUE;	
+		int eps = Integer.MAX_VALUE;	
 		for (int i = 0; i < B.size(); i++) {
-			double wert = B.get(i).getFluss() - B.get(i).getUntereGrenze();
+			int wert = B.get(i).getFluss() - B.get(i).getUntereGrenze();
 			if (wert < eps) {
 				eps = wert;
 			}
 		}
 		
 		for (int i = 0; i < F.size(); i++) {
-			double wert = F.get(i).getObereGrenze() - F.get(i).getFluss();
+			int wert = F.get(i).getObereGrenze() - F.get(i).getFluss();
 			if (wert < eps) {
 				eps = wert;
 			}
@@ -250,14 +250,14 @@ public class NetzwerkSimplex {
 		for (int i = 0; i < B.size(); i++) {
 			Bogen b = B.get(i);
 			b.setFluss(B.get(i).getFluss() - eps);
-			if ((int)Math.round(b.getFluss()) == b.getUntereGrenze()) {  // FIXME: caution compare double to int
+			if (b.getFluss() == b.getUntereGrenze()) {
 				f = b;
 			}
 		}
 		for (int i = 0; i < F.size(); i++) {			
 			Bogen b = F.get(i);
 			b.setFluss(b.getFluss() + eps);
-			if ((int)Math.round(b.getFluss()) == b.getObereGrenze()) { // FIXME: caution compare double to int
+			if (b.getFluss() == b.getObereGrenze()) {
 				f = b;
 			}
 		}

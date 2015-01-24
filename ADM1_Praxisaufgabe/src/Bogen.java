@@ -1,7 +1,7 @@
 
 public class Bogen {
 
-	private double fluss;
+	private int fluss;
 	
 	private int untereGrenze;
 	private int obereGrenze;
@@ -22,7 +22,7 @@ public class Bogen {
 		this.eingehend = eingehend;
 	}
 	
-	public double getFluss() {
+	public int getFluss() {
 		return fluss;
 	}
 	
@@ -50,7 +50,7 @@ public class Bogen {
 		return reduzierteKosten;
 	}
 	
-	public void setFluss (double fluss) {
+	public void setFluss (int fluss) {
 		this.fluss = fluss;
 	}
 	
