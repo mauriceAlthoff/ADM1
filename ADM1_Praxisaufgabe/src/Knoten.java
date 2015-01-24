@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 
 public class Knoten {
-	
+    private static int _id = 1; 	
 	private int id;
 
 	private int bedarf;
@@ -11,6 +11,12 @@ public class Knoten {
 	private ArrayList<Bogen> ausgehend = new ArrayList<Bogen>();
 	private ArrayList<Bogen> eingehend = new ArrayList<Bogen>();
 	
+	public Knoten () {
+		this.id = _id;
+		this.bedarf = 0;
+		_id++;
+	}
+
 	public Knoten (int id, int bedarf) {
 		this.id = id;
 		this.bedarf = bedarf;

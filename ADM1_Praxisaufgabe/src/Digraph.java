@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-
+import java.util.Arrays;
 
 public class Digraph {
 	
@@ -26,6 +26,8 @@ public class Digraph {
 					int b = Integer.parseInt(token[3]);
 					System.out.printf("Dimensions %d %d\n", k,b);
 					knoten = new Knoten[k];
+					for(int i = 0; i < k; i++)
+					      knoten[i] = new Knoten();
 					boegen = new Bogen[b];
 				}
 				if (token[0].equals("n")) {
